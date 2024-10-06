@@ -1,6 +1,6 @@
 <!-- entete de la page -->
 <div class="h-[768px] flex pt-[200px] justify-between z-10">
-    <!-- heder droite -->
+    <!-- header gauche -->
     <div class=" grid gap-[125px] pl-[150px]">
         <div class="grid gap-[18px]">
             <div class="text-6xl text-white w-[350px] font-medium leading-[67px] bg-gradient-to-r from-white to-[#bbbbbb] inline-block text-transparent bg-clip-text tracking-[0.225rem]"> 
@@ -15,7 +15,7 @@
             Livraison partout sur Dakar
         </div>
     </div>
-    <!-- heder droite -->
+    <!-- header droite -->
     <div class="grid pr-[150px] gap-[100px]">
         <div id="cercle1" class=" bg-[url('public/cercle 1.svg')] w-[192px] h-[192px] rounded-full content-center grid gap-[5px]">
             <img ngSrc="montre Lacoste1.svg" alt="montre" width="87" height="87" class="mx-auto">
@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="w-[244px] h-[214px] bg-gradient-to-bl from-[#5c3b885b] via-[#4b2f6c11] to-[#5D3B8800] content-center rounded-[30px]">
-            <div class="w-[240px] h-[210px]  bg-gradient-to-bl from-[#ffffff09] via-[#ffffff07] to-[#fff0] rounded-[30px] grid gap-[10px] content-center ">
+            <div class="w-[240px] h-[210px]  bg-gradient-to-bl from-[#ffffff09] via-[#ffffff07] to-[#fff0] backdrop-blur-lg rounded-[30px] grid gap-[10px] content-center ">
                 <img ngSrc="montre Lacoste2.svg" alt="montre" width="62" height="68" class="mx-auto">
                 <div class=" text-xl font-bold bg-gradient-to-r from-[#5D3B88] to-[#342250] inline-block text-transparent bg-clip-text text-center">
                     Plus de 10 marques
@@ -39,5 +39,74 @@
         </div>
     </div>
 </div>
-<img ngSrc="imageHeader.svg" alt="montre" width="1060" height="768" class="absolute top-0 content-self-center right-0 left-0 mx-auto z-0">
 
+<!-- image montre -->
+<img ngSrc="imageHeader.svg" alt="montre" width="1060" height="768" class="absolute top-0 content-self-center right-0 left-0 mx-auto z-0" priority="high">
+
+<!-- marques populaires -->
+<div class="mt-20">
+    <div class="text-center text-white text-3xl font-bold">
+        Explorer les marques les plus populaires 
+    </div>
+    <div class="flex gap-16 mt-16 justify-center">
+        @for (item of marques(); track item) {
+            <div class="w-[213px] h-[189px] rounded-[61px] bg-gradient-to-r from-[#5D3B88] to-[#342250] flex justify-between shadow-ombre1">
+                <div class="text-white text-2xl font-bold content-center text-center w-[105px]">
+                    {{item.nom}}
+                </div>
+                <div class="">
+                    <img [ngSrc]="item.img" [alt]="item.nom" width="108" height="189">
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Presentation B-WATCH -->
+<div class="mt-32 w-[942px] h-[376px] rounded-[61px] bg-gradient-to-tr from-[#ffffff31] to-[#ffffff0c] backdrop-blur-lg mx-auto border-[1px] border-r-[#342250] border-t-[#342250] border-l-[#5D3B88] border-b-[#5D3B88] shadow-ombre2 flex gap-[50px] justify-center">
+    <div class="w-[315px] content-center text-white">
+        <div class="text-3xl font-bold">
+            Illuminer votre style chez B-WATCH  
+        </div>
+        <div class="text-base my-7">
+            B-WATCH est une entreprise spécialisée dans la vente de montre. Chez nous les montres n’ont pas de secret. Nous sommes logés à Dakar.
+        </div>
+        <button class="text-base text-center w-[168px] h-[38px] bg-gradient-to-r from-[#5D3B88] to-[#342250] font-bold rounded-full ml-[30px]">
+            En savoir Plus
+        </button>
+    </div>
+    <div class="content-center">
+        <img ngSrc="personneAvecMontre.svg" alt="montre" width="258" height="276">
+    </div>
+</div> 
+
+<!-- Nouveatés sur le marché -->
+<div class="mt-20">
+    <div class="text-center text-white text-3xl font-bold">
+        Les nouveautés sur le marché 
+    </div>
+    <div class="flex justify-center gap-12 mt-12">
+        @for (item of nouveautes(); track item) {
+            <div class="w-[200px] h-[265px]">
+                <div class="w-[200px] h-[200px] rounded-full bg-gradient-to-tr from-[#ffffff31] to-[#ffffff0c] backdrop-blur-lg mx-auto border-[1px] border-r-[#342250] border-t-[#342250] border-l-[#5D3B88] border-b-[#5D3B88] content-center">
+                    <div class="flex justify-between px-4">
+                        <img ngSrc="Chevron Left.svg" alt="fleche" width="13" height="22">
+                        <div class="">
+                            <img [src]="item.img" [alt]="item.nom" height="118">
+                        </div>
+                        <img ngSrc="Chevron Right.svg" alt="fleche" width="13" height="22">    
+                    </div>
+                    <div class="flex justify-center mt-4 gap-2">
+                        <div class="h-2 w-2 rounded-full bg-slate-300"></div>
+                        <div class="h-2 w-2 rounded-full bg-slate-300"></div>
+                        <div class="h-2 w-2 rounded-full bg-slate-300"></div>
+                    </div>
+                </div>
+                <div class="text-center text-sm font-bold text-white my-3">
+                    {{item.nom}}
+                </div>
+                <img ngSrc="oeil.svg" alt="voir" width="42" height="21" class="mx-auto">
+            </div>
+        }
+    </div>
+</div>
