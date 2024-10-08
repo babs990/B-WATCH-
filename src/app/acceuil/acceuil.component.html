@@ -1,12 +1,12 @@
 <!-- entete de la page -->
-<div class="h-[768px] flex pt-[200px] justify-between z-10">
+<div class="h-[768px] flex pt-[200px] justify-between">
     <!-- header gauche -->
-    <div class=" grid gap-[125px] pl-[150px]">
+    <div class=" grid gap-[125px] ml-[150px] animate-comeLeft z-10">
         <div class="grid gap-[18px]">
             <div class="text-6xl text-white w-[350px] font-medium leading-[67px] bg-gradient-to-r from-white to-[#bbbbbb] inline-block text-transparent bg-clip-text tracking-[0.225rem]"> 
                 Achetez la montre de vos rêves 
             </div>
-            <button class="text-base text-center w-[168px] h-[38px] bg-gradient-to-r from-white to-[#bbbbbb] font-bold rounded-full ml-[30px]">
+            <button class="text-base text-center w-[168px] h-[38px] bg-gradient-to-r from-white to-[#bbbbbb] font-bold rounded-full ml-[30px] duration-700 hover:scale-[110%]">
                 Catalogue
             </button>
         </div>
@@ -16,15 +16,15 @@
         </div>
     </div>
     <!-- header droite -->
-    <div class="grid pr-[150px] gap-[100px]">
+    <div class="grid mr-[150px] gap-[100px] animate-comeRight z-10">
         <div id="cercle1" class=" bg-[url('public/cercle 1.svg')] w-[192px] h-[192px] rounded-full content-center grid gap-[5px]">
             <img ngSrc="montre Lacoste1.svg" alt="montre" width="87" height="87" class="mx-auto">
             <div class="text-xs w-[144px] text-white font-bold mx-auto text-center">
                 Les meilleurs montres sur le marché !
             </div>
         </div>
-        <div class="w-[244px] h-[214px] bg-gradient-to-bl from-[#5c3b885b] via-[#4b2f6c11] to-[#5D3B8800] content-center rounded-[30px]">
-            <div class="w-[240px] h-[210px]  bg-gradient-to-bl from-[#ffffff09] via-[#ffffff07] to-[#fff0] backdrop-blur-lg rounded-[30px] grid gap-[10px] content-center ">
+        <div class="w-[244px] h-[214px] bg-gradient-to-bl from-[#5c3b885b] via-[#4b2f6c11] to-[#5D3B8800] content-center rounded-[30px] ">
+            <div class="w-[240px] h-[210px]  bg-gradient-to-bl from-[#ffffff09] via-[#ffffff07] to-[#fff0] backdrop-blur-lg rounded-[30px] grid gap-[10px] content-center cursor-pointer">
                 <img ngSrc="montre Lacoste2.svg" alt="montre" width="62" height="68" class="mx-auto">
                 <div class=" text-xl font-bold bg-gradient-to-r from-[#5D3B88] to-[#342250] inline-block text-transparent bg-clip-text text-center">
                     Plus de 10 marques
@@ -33,7 +33,7 @@
                     <div class=" w-[165px] text-xs text-white font-bold">
                         Appuyer pour voir l’ensemble des marques
                     </div>
-                    <img ngSrc="bouton fleche.svg" alt="bouton" width="21" height="21">
+                    <img ngSrc="bouton fleche.svg" alt="bouton" width="21" height="21" class="hover:scale-[115%] duration-300 cursor-pointer">
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
 </div>
 
 <!-- image montre -->
-<img ngSrc="imageHeader.svg" alt="montre" width="1060" height="768" class="absolute top-0 content-self-center right-0 left-0 mx-auto z-0" priority="high">
+<img ngSrc="imageHeader.svg" alt="montre" width="1060" height="768" class="absolute top-0 content-self-center right-0 left-0 mx-auto z-0 animate-fadeUp2" priority="high">
 
 <!-- marques populaires -->
 <div class="mt-20">
