@@ -81,7 +81,16 @@
 </div> 
 
 <!-- Nouveatés sur le marché -->
-<div class="mt-20">
+<div 
+  class="mt-20 "
+  appAppObserveElement
+  #intersection="intersection"
+  [hidden]=""
+  [class.animate-fadeUp1]="intersection._isIntersecting"
+  (isIntersecting)="isIntersecting($event, index)"
+  [isContinuous]="true"
+
+>
     <div class="text-center text-white text-3xl font-bold">
         Les nouveautés sur le marché 
     </div>
