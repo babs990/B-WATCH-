@@ -8,9 +8,9 @@ import { Subscription, Observable, debounceTime } from 'rxjs';
 })
 export class AppObserveElementDirective implements OnInit,OnDestroy{
   @Input() root: HTMLElement | null = null
-  @Input() rootMargin = '100px 0px 0px 0px'
+  @Input() rootMargin = '0px 0px 0px 0px'
   @Input() threshold = 0
-  @Input() debounceTime = 500
+  @Input() debounceTime = 0
   @Input() isContinuous = false
 
   @Output() isIntersecting = new EventEmitter<boolean>()

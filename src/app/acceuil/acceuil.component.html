@@ -43,129 +43,189 @@
 <!-- image montre -->
 <img ngSrc="imageHeader.svg" alt="montre" width="1060" height="768" class="absolute top-0 content-self-center right-0 left-0 mx-auto z-0 animate-fadeUp2" priority="high">
 
+<!-- Element d'observation -->
+<div 
+   class="mt-6 h-14"
+   appAppObserveElement
+   #intersection1="intersection"
+   (isIntersecting)="isIntersecting($event, index)"
+   [isContinuous]="false" 
+></div>
+
 <!-- marques populaires -->
-<div class="mt-20">
-    <div class="text-center text-white text-3xl font-bold">
-        Explorer les marques les plus populaires 
-    </div>
-    <div class="flex gap-16 mt-16 justify-center">
-        @for (item of marques(); track item) {
-            <div class="w-[213px] h-[189px] rounded-[61px] bg-gradient-to-r from-[#5D3B88] to-[#342250] flex justify-between shadow-ombre1">
-                <div class="text-white text-2xl font-bold content-center text-center w-[105px]">
-                    {{item.nom}}
-                </div>
-                <div class="">
-                    <img [ngSrc]="item.img" [alt]="item.nom" width="108" height="189">
-                </div>
+@if (intersection1._isIntersecting) {
+    <div>
+        <div 
+          class="animate-fadeUp1 text-center text-white text-3xl font-bold"
+          appAppObserveElement
+          #intersection2="intersection"
+          (isIntersecting)="isIntersecting($event, index)"
+          [isContinuous]="false"    
+        >
+            Explorer les marques les plus populaires 
+        </div>
+        @if (intersection2._isIntersecting) {
+            <div class="animate-fadeRight flex gap-16 mt-16 justify-center">
+                @for (item of marques(); track item) {
+                    <div class="w-[213px] h-[189px] rounded-[61px] bg-gradient-to-r from-[#5D3B88] to-[#342250] flex justify-between shadow-ombre1 cursor-pointer hover:scale-[105%] duration-500">
+                        <div class="text-white text-2xl font-bold content-center text-center w-[105px]">
+                            {{item.nom}}
+                        </div>
+                        <div class="hover:scale-[110%] duration-700">
+                            <img [ngSrc]="item.img" [alt]="item.nom" width="108" height="189" priority="high">
+                        </div>
+                    </div>
+                }
             </div>
         }
     </div>
-</div>
+}
+
+<!-- Element d'observation -->
+<div 
+   class="mt-24 h-8"
+   appAppObserveElement
+   #intersection3="intersection"
+   (isIntersecting)="isIntersecting($event, index)"
+   [isContinuous]="false" 
+></div>
 
 <!-- Presentation B-WATCH -->
-<div class="mt-32 w-[942px] h-[376px] rounded-[61px] bg-gradient-to-tr from-[#ffffff31] to-[#ffffff0c] backdrop-blur-lg mx-auto border-[1px] border-r-[#342250] border-t-[#342250] border-l-[#5D3B88] border-b-[#5D3B88] shadow-ombre2 flex gap-[50px] justify-center">
-    <div class="w-[315px] content-center text-white">
-        <div class="text-3xl font-bold">
-            Illuminer votre style chez B-WATCH  
+@if(intersection3._isIntersecting){
+    <div 
+      class="animate-fadeUp1 w-[942px] h-[376px] rounded-[61px] bg-gradient-to-tr from-[#ffffff31] to-[#ffffff0c] backdrop-blur-lg mx-auto border-[1px] border-r-[#342250] border-t-[#342250] border-l-[#5D3B88] border-b-[#5D3B88] shadow-ombre2 flex gap-[50px] justify-center"
+    >
+        <div class="w-[315px] content-center text-white">
+            <div class="text-3xl font-bold">
+                Illuminer votre style chez B-WATCH  
+            </div>
+            <div class="text-base my-7">
+                B-WATCH est une entreprise spécialisée dans la vente de montre. Chez nous les montres n’ont pas de secret. Nous sommes logés à Dakar.
+            </div>
+            <button class="text-base text-center w-[168px] h-[38px] bg-gradient-to-r from-[#5D3B88] to-[#342250] font-bold rounded-full ml-[30px] cursor-pointer duration-700 hover:scale-[110%]">
+                En savoir Plus
+            </button>
         </div>
-        <div class="text-base my-7">
-            B-WATCH est une entreprise spécialisée dans la vente de montre. Chez nous les montres n’ont pas de secret. Nous sommes logés à Dakar.
+        <div class="content-center">
+            <img ngSrc="personneAvecMontre.svg" alt="montre" width="258" height="276">
         </div>
-        <button class="text-base text-center w-[168px] h-[38px] bg-gradient-to-r from-[#5D3B88] to-[#342250] font-bold rounded-full ml-[30px]">
-            En savoir Plus
-        </button>
-    </div>
-    <div class="content-center">
-        <img ngSrc="personneAvecMontre.svg" alt="montre" width="258" height="276">
-    </div>
-</div> 
+    </div> 
+}
+
+<!-- Element d'observation -->
+<div 
+   class="mt-10 h-10"
+   appAppObserveElement
+   #intersection4="intersection"
+   (isIntersecting)="isIntersecting($event, index)"
+   [isContinuous]="false" 
+></div>
 
 <!-- Nouveatés sur le marché -->
-<div 
-  class="mt-20 "
-  appAppObserveElement
-  #intersection="intersection"
-  [hidden]=""
-  [class.animate-fadeUp1]="intersection._isIntersecting"
-  (isIntersecting)="isIntersecting($event, index)"
-  [isContinuous]="true"
-
->
-    <div class="text-center text-white text-3xl font-bold">
-        Les nouveautés sur le marché 
-    </div>
-    <div class="flex justify-center gap-12 mt-12">
-        @for (item of nouveautes(); track item) {
-            <div class="w-[200px] h-[265px]">
-                <div class="w-[200px] h-[200px] rounded-full bg-gradient-to-tr from-[#ffffff31] to-[#ffffff0c] backdrop-blur-lg mx-auto border-[1px] border-r-[#342250] border-t-[#342250] border-l-[#5D3B88] border-b-[#5D3B88] content-center">
-                    <div class="flex justify-between px-4">
-                        <img ngSrc="Chevron Left.svg" alt="fleche" width="13" height="22">
-                        <div class="">
-                            <img [src]="item.img" [alt]="item.nom" height="118">
+@if (intersection4._isIntersecting) {
+    <div 
+      class=" animate-fadeRight"
+    >
+        <div class="text-center text-white text-3xl font-bold">
+            Les nouveautés sur le marché 
+        </div>
+        <div class="flex justify-center gap-12 mt-12">
+            @for (item of nouveautes(); track item) {
+                <div class="w-[200px] h-[265px]">
+                    <div class="w-[200px] h-[200px] rounded-full bg-gradient-to-tr from-[#ffffff31] to-[#ffffff0c] backdrop-blur-lg mx-auto border-[1px] border-r-[#342250] border-t-[#342250] border-l-[#5D3B88] border-b-[#5D3B88] content-center">
+                        <div class="flex justify-between px-4">
+                            <img ngSrc="Chevron Left.svg" alt="fleche" width="13" height="22">
+                            <div class="">
+                                <img [src]="item.img" [alt]="item.nom" height="118">
+                            </div>
+                            <img ngSrc="Chevron Right.svg" alt="fleche" width="13" height="22">    
                         </div>
-                        <img ngSrc="Chevron Right.svg" alt="fleche" width="13" height="22">    
+                        <div class="flex justify-center mt-4 gap-2">
+                            <div class="h-2 w-2 rounded-full bg-slate-300"></div>
+                            <div class="h-2 w-2 rounded-full bg-slate-300"></div>
+                            <div class="h-2 w-2 rounded-full bg-slate-300"></div>
+                        </div>
                     </div>
-                    <div class="flex justify-center mt-4 gap-2">
-                        <div class="h-2 w-2 rounded-full bg-slate-300"></div>
-                        <div class="h-2 w-2 rounded-full bg-slate-300"></div>
-                        <div class="h-2 w-2 rounded-full bg-slate-300"></div>
+                    <div class="text-center text-sm font-bold text-white my-3">
+                        {{item.nom}}
                     </div>
+                    <img ngSrc="oeil.svg" alt="voir" width="42" height="21" class="mx-auto">
                 </div>
-                <div class="text-center text-sm font-bold text-white my-3">
-                    {{item.nom}}
-                </div>
-                <img ngSrc="oeil.svg" alt="voir" width="42" height="21" class="mx-auto">
-            </div>
-        }
+            }
+        </div>
     </div>
-</div>
+}
+
+<!-- Element d'observation -->
+<div 
+   class="mt-24 h-8"
+   appAppObserveElement
+   #intersection5="intersection"
+   (isIntersecting)="isIntersecting($event, index)"
+   [isContinuous]="false" 
+></div>
 
 <!-- article -->
-<div class="mt-32 w-[942px] h-[376px] rounded-[61px] bg-gradient-to-br from-[#ffffff28] to-[#ffffff00] backdrop-blur-lg mx-auto  flex gap-[50px] justify-between">
-    <div class="w-[320px] text-white content-center ml-auto mr-12">
-        <div class="text-2xl font-bold">
-            OPEN GEAR RESEC Modern Mechanical dans le meilleur sens du terme
+@if (intersection5._isIntersecting) {
+    <div class="animate-fadeUp1 w-[942px] h-[376px] rounded-[61px] bg-gradient-to-br from-[#ffffff28] to-[#ffffff00] backdrop-blur-lg mx-auto  flex gap-[50px] justify-between">
+        <div class="w-[320px] text-white content-center ml-auto mr-12">
+            <div class="text-2xl font-bold">
+                OPEN GEAR RESEC Modern Mechanical dans le meilleur sens du terme
+            </div>
+            <div class="text-base  my-7">
+                Le nouvel Open Gear Resec est la symbiose parfaite entre savoir faire horloger, matériaux modernes, tradition et design innovant
+            </div>
+            <button class="text-base text-center w-[168px] h-[38px] bg-gradient-to-r from-[#5D3B88] to-[#342250] font-bold rounded-full cursor-pointer duration-700 hover:scale-[110%]">
+                Lire l’article
+            </button>
         </div>
-        <div class="text-base  my-7">
-            Le nouvel Open Gear Resec est la symbiose parfaite entre savoir faire horloger, matériaux modernes, tradition et design innovant
-        </div>
-        <button class="text-base text-center w-[168px] h-[38px] bg-gradient-to-r from-[#5D3B88] to-[#342250] font-bold rounded-full">
-            Lire l’article
-        </button>
+        <img ngSrc="imageArticle.svg" alt="chronowiss" width="390" height="325" class="mb-0 mt-auto ">
     </div>
-    <img ngSrc="imageArticle.svg" alt="chronowiss" width="390" height="325" class="mb-0 mt-auto ">
-</div>
+}
+
+<!-- Element d'observation -->
+<div 
+   class="mt-28 h-8"
+   appAppObserveElement
+   #intersection6="intersection"
+   (isIntersecting)="isIntersecting($event, index)"
+   [isContinuous]="false" 
+></div>
 
 <!-- formulaire -->
-<div class="mt-36 flex justify-between w-[942px] rounded-[61px] bg-gradient-to-tr from-[#ffffff31] to-[#ffffff0c] backdrop-blur-lg mx-auto ">
-    <img ngSrc="imageForm.svg" alt="montre" width="410" height="487">
-    <form class="w-[442px] mx-auto">
-        <div class="text-3xl font-bold text-white mb-[30px] mt-[30px] text-center">
-            Contactez nous !
-        </div>
-        <div class="grid gap-2 text-white font-bold">
-            <label for="">
-                Nom et Prénoms 
-            </label>
-            <input type="text" class="h-[33px] bg-[#171229] border-[1px] border-[#5D3B88] rounded-[6px] focus:border-blue-700 focus:outline-none">
-        </div>
-        <div class="grid gap-2 text-white font-bold my-5 ">
-            <label for="">
-                Emails 
-            </label>
-            <input type="text" class="h-[33px] bg-[#171229] border-[1px] border-[#5D3B88] rounded-[6px] focus:border-blue-700 focus:outline-none">
-        </div>
-        <div class="grid gap-2 text-white font-bold">
-            <label for="">
-                Message
-            </label>
-            <input type="text" class="h-[100px] bg-[#171229] border-[1px] border-[#5D3B88] rounded-[6px] focus:border-blue-700 focus:outline-none">
-        </div>
-        <button class="text-base text-center w-[168px] h-[38px] bg-green-600 text-white font-bold rounded-full ml-[137px] mt-5">
-            Envoyer
-        </button>
-    </form>
-</div>
+@if (intersection6._isIntersecting) {
+    <div class="animate-fadeLeft flex justify-between w-[942px] rounded-[61px] bg-gradient-to-tr from-[#ffffff31] to-[#ffffff0c] backdrop-blur-lg mx-auto ">
+        <img ngSrc="imageForm.svg" alt="montre" width="410" height="487" priority="high">
+        <form class="w-[442px] mx-auto">
+            <div class="text-3xl font-bold text-white mb-[30px] mt-[30px] text-center">
+                Contactez nous !
+            </div>
+            <div class="grid gap-2 text-white font-bold">
+                <label for="">
+                    Nom et Prénoms 
+                </label>
+                <input 
+                  type="text" class="h-[33px] bg-[#171229] border-[1px] border-[#5D3B88] rounded-[6px] focus:border-blue-700 focus:outline-none caret-blue-700"
+                >
+            </div>
+            <div class="grid gap-2 text-white font-bold my-5 ">
+                <label for="">
+                    Emails 
+                </label>
+                <input type="text" class="h-[33px] bg-[#171229] border-[1px] border-[#5D3B88] rounded-[6px] focus:border-blue-700 focus:outline-none caret-blue-700" >
+            </div>
+            <div class="grid gap-2 text-white font-bold">
+                <label for="">
+                    Message
+                </label>
+                <input type="text" class="h-[100px] bg-[#171229] border-[1px] border-[#5D3B88] rounded-[6px] focus:border-blue-700 focus:outline-none caret-blue-700 text-start resize-none w-full box-border px-3 py-3 justify-start">
+            </div>
+            <button class="text-base text-center w-[168px] h-[38px] bg-green-600 text-white font-bold rounded-full ml-[137px] mt-5 duration-700 hover:scale-[110%]">
+                Envoyer
+            </button>
+        </form>
+    </div>
+}
 
 <!-- footer -->
 <div class="mt-52 bg-gradient-to-t from-[#ffffff31] to-[#ffffff0c] backdrop-blur-lg w-full rounded-t-full h-[400px] content-center grid gap-14">

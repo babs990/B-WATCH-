@@ -41,7 +41,7 @@ module.exports = {
         fadeUp1 : "fadeUp 3s",
         fadeUp2 : "fadeUp 5s",
         fadeIn : "fadeIn 1s",
-        faderight : "fadeRight 3s",
+        fadeRight : "fadeRight 4s",
         fadeLeft : "fadeLeft 3s",
         comeRight : "comeRight 2s",
         comeLeft : "comeLeft 2s"
