@@ -21,18 +21,34 @@ export const marques = [
 export const nouveaux = [
     {
         nom : 'Lacoste silicone',
-        img : 'lacoste 2.svg'
+        img : [
+            'lacoste 2.svg',
+            'lacoste3.svg',
+            'lacoste4.svg'
+        ]
     },
     {
         nom : 'La Véritable',
-        img : 'veritable.svg'
+        img : [
+            'veritable.svg',
+            'veritable1.svg',
+            'veritable2.svg',
+        ]
     },
     {
         nom : 'Lotus',
-        img : 'lotus.svg'
+        img : [
+            'lotus.svg',
+            'lotus1.svg',
+            'lotus2.svg'
+        ]
     },
     {
         nom : 'André',
-        img : 'andre.svg'
+        img : [
+            'andre.svg',
+            'gustave1.svg',
+            'gustave2.svg'
+        ]
     }
 ]

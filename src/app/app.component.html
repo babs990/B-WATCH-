@@ -1,24 +1,27 @@
 <div class="bg-[#171229]">
     <!-- barre de navigation -->
-    <nav class="h-[60px] bg-[#17122900] fixed w-full flex justify-around items-center z-50">
-        <div class="hover:scale-[115%] duration-700 cursor-pointer">
+    <nav 
+      class="h-[40px] mt-[20px] w-[900px] rounded-full right-0 backdrop-blur-2xl left-0 mx-auto bg-[#ffffff17] fixed p-8 flex justify-between items-center z-50"
+      [class.bg-red-700]="navbarfixed"
+    >
+        <div class="rounded-full hover:p-1 hover:bg-[#171229] duration-300 cursor-pointer">
             <img ngSrc="logo.svg" alt="logo" width="110" height="35">
         </div>
-        <div class="flex text-white font-bold gap-[35px]">
-            <div class="hover:text-[#5D3B88] duration-200 hover:scale-[110%] cursor-pointer">
+        <div class="flex text-white font-bold gap-[35px] self-center pr-8">
+            <div class="rounded-full hover:px-2 hover:bg-[#171229] duration-300  cursor-pointer">
                 Accueil 
             </div>
-            <div class="hover:text-[#5D3B88] duration-200 hover:scale-[110%] cursor-pointer">
+            <div class="rounded-full hover:px-2 hover:bg-[#171229] duration-300 cursor-pointer">
                 À propos 
             </div>
-            <div class="hover:text-[#5D3B88] duration-200 hover:scale-[110%] cursor-pointer">
+            <div class="rounded-full hover:px-2 hover:bg-[#171229] duration-300 cursor-pointer">
                 Catalogue 
             </div>
-            <div class="hover:text-[#5D3B88] duration-200 hover:scale-[110%] cursor-pointer">
+            <div class="rounded-full hover:px-2 hover:bg-[#171229] duration-300 cursor-pointer">
                 Blog 
             </div>
         </div>
-        <div class="hover:scale-[115%] duration-700 cursor-pointer">
+        <div class="rounded-full hover:p-1 hover:bg-[#171229] duration-300 cursor-pointer">
             <img ngSrc="dropIcon.svg" alt="logo" width="35" height="35">
         </div>
     </nav>
