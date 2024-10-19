@@ -1,7 +1,7 @@
 <div class="bg-[#171229]">
     <!-- barre de navigation -->
     <nav 
-      class="h-[40px] mt-[20px] w-[900px] rounded-full right-0 backdrop-blur-2xl left-0 mx-auto bg-[#ffffff17] fixed p-8 flex justify-between items-center z-50"
+      class="h-[40px] mt-[20px] w-[900px] rounded-full right-0 backdrop-blur-2xl left-0 mx-auto bg-[#ffffff17] fixed p-8 flex justify-between items-center z-40"
       [class.bg-red-700]="navbarfixed"
     >
         <div class="rounded-full hover:p-1 hover:bg-[#171229] duration-300 cursor-pointer">
@@ -25,5 +25,6 @@
             <img ngSrc="dropIcon.svg" alt="logo" width="35" height="35">
         </div>
     </nav>
+    <app-panier></app-panier>
     <router-outlet></router-outlet>
 </div>

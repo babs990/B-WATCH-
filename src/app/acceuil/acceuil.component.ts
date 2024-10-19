@@ -5,11 +5,12 @@ import { AppObserveElementDirective } from '../app-observe-element.directive';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { PanierComponent } from '../panier/panier.component';
 
 @Component({
   selector: 'app-acceuil',
   standalone: true,
-  imports: [NgOptimizedImage,AppObserveElementDirective,ReactiveFormsModule],
+  imports: [NgOptimizedImage,AppObserveElementDirective,ReactiveFormsModule,PanierComponent],
   templateUrl: './acceuil.component.html',
   styleUrl: './acceuil.component.css'
 })
@@ -56,8 +57,8 @@ export class AcceuilComponent implements AfterViewInit{
     })
 
     // animation nouveautes
-    gsap.from('.produit',{
-      x:100,
+    gsap.from('#nouveautes',{
+      y:100,
       duration:3,
       opacity:0,
       delay: 0.2,
@@ -66,10 +67,48 @@ export class AcceuilComponent implements AfterViewInit{
         start:'top 95%',
       }
     })
-  }
 
-  isIntersecting (status: boolean, index: number) {
-    console.log('Element #' + index + ' is intersecting ' + status)
+    // animation article
+    gsap.from('#textArticle',{
+      x:-100,
+      duration:3,
+      opacity:0,
+      scrollTrigger:{
+        trigger:'#article',
+        start:'top 80%',
+      }
+    })
+    gsap.from('#imageArticle',{
+      x:100,
+      duration:3,
+      opacity:0,
+      scrollTrigger:{
+        trigger:'#article',
+        start:'top 80%',
+      }
+    })
+
+    // animation formulaire
+    gsap.from('#imageForm',{
+      x:-200,
+      duration:3,
+      ease:'bounce',
+      opacity:0,
+      scrollTrigger:{
+        trigger:'#form',
+        start:'top 90%',
+      }
+    })
+    gsap.from('#formForm',{
+      scale:0.9,
+      duration:3,
+      ease:'bounce',
+      opacity:0,
+      scrollTrigger:{
+        trigger:'#form',
+        start:'top 90%',
+      }
+    })
   }
 
   clickleft(){

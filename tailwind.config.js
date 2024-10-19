@@ -9,7 +9,8 @@ module.exports = {
     extend: {
       boxShadow: {
         ombre1 : '9px 15px 7.6px rgba(0, 0, 0, 0.35)',
-        ombre2 : '0px 4px 32.7px rgba(0, 0, 0, 0.35)'
+        ombre2 : '0px 4px 32.7px rgba(0, 0, 0, 0.35)',
+        ombreCarte : '6px 6px 6.9px rgba(0, 0, 0, 0.1)'
       },
       keyframes: {
         fadeUp : {
