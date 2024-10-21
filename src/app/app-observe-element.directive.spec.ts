@@ -1,4 +1,4 @@
-import { AppObserveElementDirective } from './app-observe-element.directive';
+import { AppObserveElementDirective } from './hidePanier.directive';
 
 describe('AppObserveElementDirective', () => {
   it('should create an instance', () => {

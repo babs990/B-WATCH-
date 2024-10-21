@@ -1,7 +1,6 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Observable } from 'rxjs';
 import { PanierComponent } from './panier/panier.component';
 
 @Component({
@@ -12,5 +11,15 @@ import { PanierComponent } from './panier/panier.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent{
-  navbarfixed:boolean = false
+
+  el:any
+  constructor(el:ElementRef){
+    this.el = el
+  }
+
+  revealPanier(){
+    this.el.nativeElement.querySelector('#fenetre').classList.remove('translate-x-full')
+    this.el.nativeElement.querySelector('#doubleFenetre').classList.remove('translate-x-full')
+  }
+
 }

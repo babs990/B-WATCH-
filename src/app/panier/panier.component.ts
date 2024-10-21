@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import {gsap} from 'gsap';
 
 @Component({
@@ -9,18 +9,16 @@ import {gsap} from 'gsap';
   templateUrl: './panier.component.html',
   styleUrl: './panier.component.css'
 })
-export class PanierComponent implements AfterViewInit {
+export class PanierComponent {
 
-  ngAfterViewInit(): void {
-    gsap.from('#entete',{
-      y: -20,
-      duration: 2,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: '#fenetre',
-        start:'left 90%',
-        markers: true
-      }
-    })
+  el:any
+  constructor(el:ElementRef){
+    this.el = el
   }
+
+  hidePanier(){
+    this.el.nativeElement.querySelector('#fenetre').classList.add('translate-x-full')
+    this.el.nativeElement.querySelector('#doubleFenetre').classList.add('translate-x-full')
+  }
+
 }

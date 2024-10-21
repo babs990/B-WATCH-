@@ -1,7 +1,6 @@
 import { NgOptimizedImage } from '@angular/common';
 import { AfterViewInit, Component, OnInit, signal } from '@angular/core';
 import { marques, nouveaux } from './marque';
-import { AppObserveElementDirective } from '../app-observe-element.directive';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,7 +9,7 @@ import { PanierComponent } from '../panier/panier.component';
 @Component({
   selector: 'app-acceuil',
   standalone: true,
-  imports: [NgOptimizedImage,AppObserveElementDirective,ReactiveFormsModule,PanierComponent],
+  imports: [NgOptimizedImage,ReactiveFormsModule,PanierComponent],
   templateUrl: './acceuil.component.html',
   styleUrl: './acceuil.component.css'
 })
