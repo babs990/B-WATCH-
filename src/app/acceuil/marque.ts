@@ -1,19 +1,19 @@
 export const marques = [
     {
         nom : 'Rolex',
-        img : 'rolex 1.svg'
+        img : 'rolex/rolex 1.svg'
     },
     {
         nom : 'Tissot',
-        img : 'tissot 1.svg'
+        img : 'tissot/tissot 1.svg'
     },
     {
         nom : 'Casio',
-        img : 'casio 1.svg'
+        img : 'casio/casio 1.svg'
     },
     {
         nom : 'Lacoste',
-        img : 'lacoste 1.svg'
+        img : 'lacoste/lacoste 1.svg'
     }
 
 ]
@@ -22,33 +22,33 @@ export const nouveaux = [
     {
         nom : 'Lacoste silicone',
         img : [
-            'lacoste 2.svg',
-            'lacoste3.svg',
-            'lacoste4.svg'
+            'lacoste/lacoste 2.svg',
+            'lacoste/lacoste3.svg',
+            'lacoste/lacoste4.svg'
         ]
     },
     {
         nom : 'La Véritable',
         img : [
-            'veritable.svg',
-            'veritable1.svg',
-            'veritable2.svg',
+            'veritable/veritable.svg',
+            'veritable/veritable1.svg',
+            'veritable/veritable2.svg',
         ]
     },
     {
         nom : 'Lotus',
         img : [
-            'lotus.svg',
-            'lotus1.svg',
-            'lotus2.svg'
+            'lotus/lotus.svg',
+            'lotus/lotus1.svg',
+            'lotus/lotus2.svg'
         ]
     },
     {
         nom : 'André',
         img : [
-            'andre.svg',
-            'gustave1.svg',
-            'gustave2.svg'
+            'gustave/andre.svg',
+            'gustave/gustave1.svg',
+            'gustave/gustave2.svg'
         ]
     }
 ]

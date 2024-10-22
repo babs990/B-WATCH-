@@ -1,6 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { AfterViewInit, Component, ElementRef } from '@angular/core';
-import {gsap} from 'gsap';
+import { Component, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-panier',
