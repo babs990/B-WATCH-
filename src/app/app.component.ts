@@ -1,12 +1,12 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, ElementRef, HostListener } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { PanierComponent } from './panier/panier.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,NgOptimizedImage,PanierComponent],
+  imports: [RouterOutlet,NgOptimizedImage,PanierComponent,RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

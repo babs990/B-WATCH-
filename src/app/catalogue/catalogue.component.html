@@ -1,0 +1,41 @@
+<div id="catalogue" class="pt-40 pl-24 text-white">
+    <!-- barre de recherche -->
+    <form class="flex h-[40px] w-[500px] mx-auto bg-[#ffffff36] backdrop-blur-sm rounded-full">
+        <input 
+          type="text" 
+          class="bg-[#fff0] w-[445px] rounded-l-full focus:outline-none pl-8 text-white placeholder-[#ffffff36] placeholder:font-extralight"
+          placeholder="Rechercher une marque"
+        >
+        <div class="h-[38px] w-[1px] bg-[#d9d9d933]"></div>
+        <img ngSrc="Search.svg" alt="search" width="25" height="25" class="w-[25px] ml-auto mr-5">
+    </form>
+
+    <!-- filtre resultats -->
+    <div class="flex text-sm text-white items-center mt-5 mb-9">
+        <img ngSrc="filtre.svg" alt="filtre" width="25" height="25">
+        <div class="">
+            Filtrer les marques
+        </div>
+    </div>
+
+    <!-- categories Homme -->
+    <div class="mb-3">
+        <div class="text-3xl font-bold">
+            Homme
+        </div>
+        <div class="mt-9 bg-im cursor-pointer">
+            <div id="hublot" class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl grid overflow-hidden" (mouseenter)="dropTranslate()" (mouseleave)="addTranslate()">
+                <img src="hublot/hublotMarque.svg" alt="hublot" class="mx-auto pt-3 duration-700">
+                <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
+                    Hublot
+                </div>
+                <div class="w-full h-full bg-[#342250ec] absolute rounded-[44px] text-center content-center translate-x-[290px] duration-500">
+                    Hublot est une maison de haute horlogerie fondée en Suisse en 1980 dirigée depuis 2012 par Ricardo Guadalupe.
+                </div>
+            </div>
+        </div>
+    </div>
+    @for (item of marque(); track item.id) {
+        <div>{{item.nom}}</div>
+    }
+</div>
