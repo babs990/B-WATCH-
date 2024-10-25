@@ -1,4 +1,8 @@
-<div id="catalogue" class="pt-40 pl-24 text-white">
+@if (loading()) {
+    <div class="w-full h-full bg-white fixed"></div>
+}
+
+<div #catalogue id="catalogue" class="pt-40 pl-24 text-white">
     <!-- barre de recherche -->
     <form class="flex h-[40px] w-[500px] mx-auto bg-[#ffffff36] backdrop-blur-sm rounded-full">
         <input 
@@ -10,7 +14,7 @@
         <img ngSrc="Search.svg" alt="search" width="25" height="25" class="w-[25px] ml-auto mr-5">
     </form>
 
-    <!-- filtre resultats -->
+    <!-- filtrer resultats -->
     <div class="flex text-sm text-white items-center mt-5 mb-9">
         <img ngSrc="filtre.svg" alt="filtre" width="25" height="25">
         <div class="">
@@ -18,24 +22,111 @@
         </div>
     </div>
 
-    <!-- categories Homme -->
     <div class="mb-3">
+        <!-- categories Homme -->
         <div class="text-3xl font-bold">
             Homme
         </div>
-        <div class="mt-9 bg-im cursor-pointer">
-            <div id="hublot" class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl grid overflow-hidden" (mouseenter)="dropTranslate()" (mouseleave)="addTranslate()">
-                <img src="hublot/hublotMarque.svg" alt="hublot" class="mx-auto pt-3 duration-700">
-                <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
-                    Hublot
+        <div class="mt-9 cursor-pointer gap-16 w-full overflow-auto flex pr-3">
+            @for (item of marqueHomme(); track item) {
+                <div>
+                    <div 
+                      [id]="item?.nom" 
+                      class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl grid overflow-hidden" 
+                      (mouseenter)="dropTranslate(item.nom)" 
+                      (mouseleave)="addTranslate(item.nom)"
+                      #i
+                    >
+                        <img [src]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700">
+                        <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
+                            {{item.nom}}
+                        </div>
+                        <div class="w-full h-full bg-[#342250ec] absolute rounded-[44px] text-center content-center translate-y-[320px] duration-500">
+                            {{item.description}}
+                        </div>
+                    </div>
                 </div>
-                <div class="w-full h-full bg-[#342250ec] absolute rounded-[44px] text-center content-center translate-x-[290px] duration-500">
-                    Hublot est une maison de haute horlogerie fondée en Suisse en 1980 dirigée depuis 2012 par Ricardo Guadalupe.
-                </div>
-            </div>
+            }
         </div>
+
+        <!-- categories Homme -->
+        <div class="text-3xl font-bold mt-16">
+            Femme
+        </div>
+        <div class="mt-9 cursor-pointer gap-16 w-full overflow-auto flex pr-3">
+            @for (item of marqueFemme(); track item.id) {
+                <div>
+                    <div 
+                      [id]="item.nom" 
+                      class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl grid overflow-hidden" 
+                      (mouseenter)="dropTranslate(item.nom)" 
+                      (mouseleave)="addTranslate(item.nom)"
+                    >
+                        <img [src]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700">
+                        <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
+                            {{item.nom}}
+                        </div>
+                        <div class="w-full h-full bg-[#342250ec] fixed rounded-[44px] text-center content-center translate-y-[320px] duration-500">
+                            {{item.description}}
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- categories populaire -->
+        <div class="text-3xl font-bold mt-16">
+            Populaire
+        </div>
+        <div class="mt-9 cursor-pointer gap-16 w-full overflow-auto flex pr-3">
+            @for (item of marquePopulaire(); track item.id) {
+                <div>
+                    <div 
+                      [id]="item.nom" 
+                      class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl grid overflow-hidden" 
+                      (mouseenter)="dropTranslate(item.nom)" 
+                      (mouseleave)="addTranslate(item.nom)"
+                    >
+                        <img [src]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700">
+                        <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
+                            {{item.nom}}
+                        </div>
+                        <div class="w-full h-full bg-[#342250ec] fixed rounded-[44px] text-center content-center translate-y-[320px] duration-500">
+                            {{item.description}}
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- categories all -->
+        <div class="text-3xl font-bold mt-16">
+            Toutes les marques
+        </div>
+        <div class="mt-9 cursor-pointer gap-16 w-full overflow-auto flex pr-3">
+            @for (item of marque(); track item.id) {
+                <div>
+                    <div 
+                      [id]="item.nom" 
+                      class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl grid overflow-hidden" 
+                      (mouseenter)="dropTranslate(item.nom)" 
+                      (mouseleave)="addTranslate(item.nom)"
+                    >
+                        <img [src]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700">
+                        <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
+                            {{item.nom}}
+                        </div>
+                        <div class="w-full h-full bg-[#342250ec] fixed rounded-[44px] text-center content-center translate-y-[320px] duration-500">
+                            {{item.description}}
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+
+
     </div>
-    @for (item of marque(); track item.id) {
-        <div>{{item.nom}}</div>
-    }
 </div>
+
+

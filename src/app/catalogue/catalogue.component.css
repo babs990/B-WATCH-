@@ -5,3 +5,23 @@
     background-position: center;
     background-attachment: fixed;
 }
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    background: #17122900;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #17122900;
+    border-radius: 5px;
+}
+ 
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #17122900;
+}
