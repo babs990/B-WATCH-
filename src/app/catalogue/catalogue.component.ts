@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { AfterViewInit, Component, computed, effect, ElementRef, inject, viewChild } from '@angular/core';
+import {  Component, computed, effect, ElementRef, inject, viewChild } from '@angular/core';
 import { MontreService } from '../montre.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import _, { shuffle } from 'underscore'
