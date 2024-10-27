@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import {  Component, computed, effect, ElementRef, inject, viewChild } from '@angular/core';
+import {  Component, computed, effect, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { MontreService } from '../montre.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import _, { shuffle } from 'underscore'
@@ -15,22 +15,33 @@ export class CatalogueComponent{
 
   private service =inject(MontreService)
   readonly marque = toSignal(this.service.getMarque())
+  readonly searchInput = signal('')
+
   readonly marqueHomme = computed(()=>{
     return this.marque()?.filter((element)=>element.type == 'Homme')
   })
+
   readonly marqueFemme = computed(()=>{
     return this.marque()?.filter((element)=>element.type == 'Femme')
   })
+
   readonly marquePopulaire = computed(()=>{
     if(this.marque() != undefined){
       return _.shuffle( this.marque()!.filter((element)=>element.etoiles >= 4)) 
     }
     return
   })
+
+  readonly result = computed(()=>{
+    return this.marque()?.filter((item)=>{
+      return item.nom.toUpperCase().includes(this.searchInput().toUpperCase())
+    })
+  })
   readonly loading = computed(() => !this.marque()); 
   private element:any
   catalogue = viewChild<ElementRef>("catalogue");
     
+
   constructor(el:ElementRef){
     this.element=el
     effect(() => {
@@ -46,5 +57,11 @@ export class CatalogueComponent{
     this.element.nativeElement.querySelector('#' + id).childNodes[2].classList.add('translate-y-[320px]')
   }  
 
-  
+
+  searchReveal(){
+    this.element.nativeElement.querySelector('#search').classList.remove('hidden')
+  }
+  searchHide(){
+    this.element.nativeElement.querySelector('#search').classList.add('hidden')
+  }
 }
