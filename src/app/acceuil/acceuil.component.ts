@@ -5,11 +5,12 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } fr
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PanierComponent } from '../panier/panier.component';
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-acceuil',
   standalone: true,
-  imports: [NgOptimizedImage,ReactiveFormsModule,PanierComponent],
+  imports: [NgOptimizedImage, ReactiveFormsModule, PanierComponent, FooterComponent],
   templateUrl: './acceuil.component.html',
   styleUrl: './acceuil.component.css'
 })

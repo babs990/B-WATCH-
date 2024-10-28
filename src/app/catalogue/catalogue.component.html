@@ -1,6 +1,3 @@
-<!-- @if (loading()) {
-    <div class="w-full h-full bg-white fixed"></div>
-} -->
 
 <div #catalogue id="catalogue" class="pt-40  text-white">
     <!-- barre de recherche -->
@@ -27,94 +24,111 @@
     </div>
 
     <!-- filtrer resultats -->
-    <div class="flex text-sm text-white items-center mt-9 mb-9 pl-24">
-        <img ngSrc="filtre.svg" alt="filtre" width="25" height="25">
+    <div class="flex text-sm text-white items-center gap-2 mt-9 mb-12 pl-24">
+        <img 
+          ngSrc="filtre.svg" 
+          alt="filtre" 
+          width="25" 
+          height="25" 
+          class="hover:scale-[110%] duration-300 cursor-pointer" 
+          (click)="filterReveal()"
+        >
         <div class="">
             Filtrer les marques
+            <div id="filtre" class="absolute w-[200px] h-[105px] rounded-2xl mt-2 left-24 bg-[#ffffff60] backdrop-blur-3xl hidden">
+                <div 
+                  id="homme" 
+                  class="text-center pt-1 font-semibold text-lg cursor-pointer bg-[#342250] rounded-2xl mx-4 hover:scale-[105%] duration-500"
+                  (click)="filtreHomme()"
+                >
+                    Homme
+                </div>
+                <div 
+                  id="femme" 
+                  class="text-center pt-1 font-semibold text-lg cursor-pointer hover:scale-[105%] duration-500 rounded-2xl mx-4"
+                  (click)="filtreFemme()"
+                >
+                    Femme
+                </div>
+                <div 
+                  id="populaire" 
+                  class="text-center pt-1 font-semibold text-lg cursor-pointer hover:scale-[105%] duration-500 rounded-2xl mx-4"
+                  (click)="filtrePopulaire()"
+                >
+                    Populaire
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="mb-3 pl-24">
-        <!-- categories Homme -->
-        <div class="text-3xl font-bold">
-            Homme
-        </div>
-        <div class="mt-9 cursor-pointer gap-16 w-full overflow-auto flex pr-3">
-            @for (item of marqueHomme(); track item) {
-                <div>
-                    <div 
-                      [id]="item?.nom" 
-                      class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl shadow-ombreCarte grid overflow-hidden" 
-                    >
-                    <img [ngSrc]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700 hover:scale-[110%]" height="240" width="165">
-                    <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
-                        {{item.nom}}
-                    </div>
-                    </div>
-                </div>
-            }
-        </div>
-
-        <!-- categories Femme -->
-        <div class="text-3xl font-bold mt-16">
-            Femme
-        </div>
-        <div class="mt-9 cursor-pointer gap-16 w-full overflow-auto flex pr-3">
-            @for (item of marqueFemme(); track item.id) {
-                <div>
-                    <div 
-                      [id]="item.nom" 
-                      class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl shadow-ombreCarte grid overflow-hidden" 
-                    >
-                    <img [ngSrc]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700 hover:scale-[110%]" height="240" width="165">
-                    <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
+    <div class="mb-3 ">
+        @if (marqueFiltre() == 'homme') {
+            <!-- categories Homme -->
+            <div class="text-3xl font-bold pl-24">
+                Homme
+            </div>
+            <div class="mt-9 cursor-pointer gap-16 w-full grid grid-cols-[290px_290px_290px_290px] gap justify-center">
+                @for (item of marqueHomme(); track item) {
+                    <div>
+                        <div 
+                          [id]="item?.nom" 
+                          class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl duration-500 hover:scale-[95%] shadow-ombreCarte grid overflow-hidden" 
+                        >
+                        <img [ngSrc]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700 hover:scale-[110%]" height="240" width="165">
+                        <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
                             {{item.nom}}
                         </div>
-                    </div>
-                </div>
-            }
-        </div>
-
-        <!-- categories populaire -->
-        <div class="text-3xl font-bold mt-16">
-            Populaire
-        </div>
-        <div class="mt-9 cursor-pointer gap-16 w-full overflow-auto flex pr-3">
-            @for (item of marquePopulaire(); track item.id) {
-                <div>
-                    <div 
-                      [id]="item.nom" 
-                      class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl shadow-ombreCarte grid overflow-hidden" 
-                    >
-                    <img [ngSrc]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700 hover:scale-[110%]" height="240" width="165">
-                    <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
-                            {{item.nom}}
                         </div>
                     </div>
-                </div>
-            }
-        </div>
+                }
+            </div>
+        }
 
-        <!-- categories all -->
-        <div class="text-3xl font-bold mt-16">
-            Toutes les marques
-        </div>
-        <div class="mt-9 cursor-pointer gap-16 w-full overflow-auto flex pr-3">
-            @for (item of marque(); track item.id) {
-                <div>
-                    <div 
-                      [id]="item.nom" 
-                      class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl shadow-ombreCarte grid overflow-hidden" 
-                    >
-                    <img [ngSrc]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700 hover:scale-[110%]" height="240" width="165">
-                    <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
-                            {{item.nom}}
+        @if (marqueFiltre() == 'femme') {
+            <!-- categories Femme -->
+            <div class="text-3xl font-bold mt-16 pl-24">
+                Femme
+            </div>
+            <div class="mt-9 cursor-pointer gap-16 w-full grid grid-cols-[290px_290px_290px_290px] gap justify-center">
+                @for (item of marqueFemme(); track item.id) {
+                    <div>
+                        <div 
+                          [id]="item.nom" 
+                          class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl shadow-ombreCarte grid duration-500 hover:scale-[95%] overflow-hidden" 
+                        >
+                        <img [ngSrc]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700 hover:scale-[110%]" height="240" width="165">
+                        <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
+                                {{item.nom}}
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
-        </div>
+                }
+            </div>
+        }
+
+        @if (marqueFiltre() == 'populaire') {
+            <!-- categories populaire-->
+            <div class="text-3xl font-bold mt-16 pl-24">
+                Populaire
+            </div>
+            <div class="mt-9 cursor-pointer gap-16 w-full grid grid-cols-[290px_290px_290px_290px] gap justify-center">
+                @for (item of marquePopulaire(); track item.id) {
+                    <div>
+                        <div 
+                          [id]="item.nom" 
+                          class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl shadow-ombreCarte grid duration-500 hover:scale-[95%] overflow-hidden" 
+                        >
+                        <img [ngSrc]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700 hover:scale-[110%]" height="240" width="165">
+                        <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
+                                {{item.nom}}
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div> 
+        }
     </div>
+    <app-footer></app-footer>
 </div>
 
 

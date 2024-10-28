@@ -3,11 +3,12 @@ import {  Component, computed, effect, ElementRef, inject, signal, viewChild } f
 import { MontreService } from '../montre.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import _, { shuffle } from 'underscore'
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-catalogue',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage,FooterComponent],
   templateUrl: './catalogue.component.html',
   styleUrl: './catalogue.component.css'
 })
@@ -15,6 +16,7 @@ export class CatalogueComponent{
 
   private service =inject(MontreService)
   readonly marque = toSignal(this.service.getMarque())
+  marqueFiltre = signal('homme')
   readonly searchInput = signal('')
 
   readonly marqueHomme = computed(()=>{
@@ -50,19 +52,67 @@ export class CatalogueComponent{
   });
   }
 
-  dropTranslate(id:string){
-    this.element.nativeElement.querySelector('#' + id).childNodes[2].classList.remove('translate-y-[320px]')
+  // Afficher ou masquer filtre
+  filterReveal(){
+    const t =this.element.nativeElement.querySelector('#filtre')
+    if(t.classList.contains('hidden')){
+      t.classList.remove('hidden')
+    }else{
+      t.classList.add('hidden')
+    }
   }
-  addTranslate(id:string){
-    this.element.nativeElement.querySelector('#' + id).childNodes[2].classList.add('translate-y-[320px]')
-  }  
 
-
+  // Afficher et masquer les recherches
   searchReveal(){
     this.element.nativeElement.querySelector('#search').classList.remove('hidden')
   }
   searchHide(){
     this.element.nativeElement.querySelector('#search').classList.add('hidden')
   }
-  addbabs(){}
+
+  // filtre Homme
+  filtreHomme(){
+    this.element.nativeElement.querySelector('#homme').classList.add('bg-[#342250]')
+
+    if(this.element.nativeElement.querySelector('#femme').classList.contains('bg-[#342250]')){
+      this.element.nativeElement.querySelector('#femme').classList.remove('bg-[#342250]')
+    }
+
+    if(this.element.nativeElement.querySelector('#populaire').classList.contains('bg-[#342250]')){
+      this.element.nativeElement.querySelector('#populaire').classList.remove('bg-[#342250]')
+    }
+
+    this.marqueFiltre.set('homme')
+  }
+
+  // filtre femme
+  filtreFemme(){
+    this.element.nativeElement.querySelector('#femme').classList.add('bg-[#342250]')
+
+    if(this.element.nativeElement.querySelector('#homme').classList.contains('bg-[#342250]')){
+      this.element.nativeElement.querySelector('#homme').classList.remove('bg-[#342250]')
+    }
+
+    if(this.element.nativeElement.querySelector('#populaire').classList.contains('bg-[#342250]')){
+      this.element.nativeElement.querySelector('#populaire').classList.remove('bg-[#342250]')
+    }
+
+    this.marqueFiltre.set('femme')
+  }
+
+  // filtre populaire
+  filtrePopulaire(){
+    this.element.nativeElement.querySelector('#populaire').classList.add('bg-[#342250]')
+
+    if(this.element.nativeElement.querySelector('#femme').classList.contains('bg-[#342250]')){
+      this.element.nativeElement.querySelector('#femme').classList.remove('bg-[#342250]')
+    }
+
+    if(this.element.nativeElement.querySelector('#homme').classList.contains('bg-[#342250]')){
+      this.element.nativeElement.querySelector('#homme').classList.remove('bg-[#342250]')
+    }
+
+    this.marqueFiltre.set('populaire')
+  }
+
 }
