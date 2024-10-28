@@ -64,4 +64,5 @@ export class CatalogueComponent{
   searchHide(){
     this.element.nativeElement.querySelector('#search').classList.add('hidden')
   }
+  addbabs(){}
 }
