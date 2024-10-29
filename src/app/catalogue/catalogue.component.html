@@ -62,6 +62,9 @@
     </div>
 
     <div class="mb-3 ">
+        @if(loading()){
+            <img src="logo.svg" alt="logo" class="animate-bounce mx-auto content-center">
+        }
         @if (marqueFiltre() == 'homme') {
             <!-- categories Homme -->
             <div class="text-3xl font-bold pl-24">
