@@ -4,11 +4,12 @@ import { MontreService } from '../montre.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import _, { shuffle } from 'underscore'
 import { FooterComponent } from '../footer/footer.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-catalogue',
   standalone: true,
-  imports: [NgOptimizedImage,FooterComponent],
+  imports: [NgOptimizedImage,FooterComponent,RouterLink],
   templateUrl: './catalogue.component.html',
   styleUrl: './catalogue.component.css'
 })
@@ -41,15 +42,10 @@ export class CatalogueComponent{
   })
   readonly loading = computed(() => !this.marque()); 
   private element:any
-  catalogue = viewChild<ElementRef>("catalogue");
     
 
   constructor(el:ElementRef){
     this.element=el
-    effect(() => {
-      console.log("catalogue: ", 
-      this.catalogue()?.nativeElement.childNodes[2].parentElement.querySelector('#Hublot'));
-  });
   }
 
   // Afficher ou masquer filtre

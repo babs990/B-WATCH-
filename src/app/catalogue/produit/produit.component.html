@@ -1,0 +1,30 @@
+<div class="pt-[150px]">
+    <!-- barre de recherche -->
+    <form class="flex h-[40px] w-[500px] mx-auto bg-[#ffffff36] backdrop-blur-sm rounded-full shadow-ombreCarte">
+        <input 
+          type="text" 
+          class="bg-[#fff0] w-[445px] rounded-l-full focus:outline-none pl-8 text-white placeholder-[#ffffff36] placeholder:font-extralight"
+          placeholder="Rechercher une marque"
+          #input
+          [value]="searchInput()"
+          (input)="searchInput.set(input.value)"
+          (focus)="searchReveal()"
+          (blur)="searchHide()"
+        >
+        <div class="h-[38px] w-[1px] bg-[#d9d9d933]"></div>
+        <img ngSrc="Search.svg" alt="search" width="25" height="25" class="w-[25px] ml-auto mr-5 cursor-pointer duration-700 hover:scale-[105%]">
+    </form>
+    <div id="search" class="absolute left-0 right-0 w-[500px] max-h-[250px] overflow-auto mx-auto bg-[#ffffff36] backdrop-blur-sm rounded-3xl mt-1 pt-2 z-30 hidden duration-700 animate-fadeIn ">
+        @if (marque() !== undefined) {
+            @for (item of result(); track item) {
+                <div class="h-5 text-center mb-2 rounded-full hover:bg-[#342250] duration-200 cursor-pointer animate-fadeIn ">
+                    {{item}}
+                </div>
+            }
+        }
+    </div>
+    
+    <div class="text-4xl text-white text-center mt-8">
+        Montre {{marque()?.nom}}
+    </div>
+</div>

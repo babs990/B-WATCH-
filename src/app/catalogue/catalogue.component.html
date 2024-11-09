@@ -15,9 +15,9 @@
         <div class="h-[38px] w-[1px] bg-[#d9d9d933]"></div>
         <img ngSrc="Search.svg" alt="search" width="25" height="25" class="w-[25px] ml-auto mr-5 cursor-pointer duration-700 hover:scale-[105%]">
     </form>
-    <div id="search" class="absolute left-0 right-0 w-[500px] max-h-[250px] overflow-auto mx-auto bg-[#ffffff36] backdrop-blur-sm rounded-3xl mt-1 pt-2 z-30 hidden duration-700">
+    <div id="search" class="absolute left-0 right-0 w-[500px] max-h-[250px] overflow-auto mx-auto bg-[#ffffff36] backdrop-blur-sm rounded-3xl mt-1 pt-2 z-30 hidden duration-700 animate-fadeIn ">
         @for (item of result(); track item) {
-            <div class="h-5 text-center mb-2 rounded-full hover:bg-[#342250] duration-200 cursor-pointer">
+            <div class="h-5 text-center mb-2 rounded-full hover:bg-[#342250] duration-200 cursor-pointer animate-fadeIn ">
                 {{item.nom}}
             </div>
         }
@@ -35,7 +35,7 @@
         >
         <div class="">
             Filtrer les marques
-            <div id="filtre" class="absolute w-[200px] h-[105px] rounded-2xl mt-2 left-24 bg-[#ffffff60] backdrop-blur-3xl hidden">
+            <div id="filtre" class=" animate-fadeIn absolute w-[200px] h-[105px] rounded-2xl mt-2 left-24 bg-[#ffffff60] backdrop-blur-3xl hidden">
                 <div 
                   id="homme" 
                   class="text-center pt-1 font-semibold text-lg cursor-pointer bg-[#342250] rounded-2xl mx-4 hover:scale-[105%] duration-500"
@@ -75,12 +75,13 @@
                     <div>
                         <div 
                           [id]="item?.nom" 
-                          class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl duration-500 hover:scale-[95%] shadow-ombreCarte grid overflow-hidden" 
-                        >
-                        <img [ngSrc]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700 hover:scale-[110%]" height="240" width="165">
-                        <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
-                            {{item.nom}}
-                        </div>
+                          class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl duration-500 hover:scale-[95%] shadow-ombreCarte grid overflow-hidden"
+                          [routerLink]="['/catalogue/produit',item.id]" 
+                          >
+                          <img [ngSrc]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700 hover:scale-[110%]" height="240" width="165">
+                          <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
+                              {{item.nom}}
+                          </div>
                         </div>
                     </div>
                 }
@@ -97,7 +98,8 @@
                     <div>
                         <div 
                           [id]="item.nom" 
-                          class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl shadow-ombreCarte grid duration-500 hover:scale-[95%] overflow-hidden" 
+                          class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl shadow-ombreCarte grid duration-500 hover:scale-[95%] overflow-hidden"
+                          [routerLink]="['/catalogue/produit',item.id]"  
                         >
                         <img [ngSrc]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700 hover:scale-[110%]" height="240" width="165">
                         <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
@@ -120,6 +122,7 @@
                         <div 
                           [id]="item.nom" 
                           class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl shadow-ombreCarte grid duration-500 hover:scale-[95%] overflow-hidden" 
+                          [routerLink]="['/catalogue/produit',item.id]" 
                         >
                         <img [ngSrc]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700 hover:scale-[110%]" height="240" width="165">
                         <div class="h-[50px] w-[200px] pt-3 mt-[18px] rounded-tl-[44px] rounded-br-[44px] ml-auto text-center font-bold text-2xl bg-gradient-to-r from-[#5D3B88] to-[#342250]">
