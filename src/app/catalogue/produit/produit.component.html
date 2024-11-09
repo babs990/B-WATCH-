@@ -15,10 +15,10 @@
         <img ngSrc="Search.svg" alt="search" width="25" height="25" class="w-[25px] ml-auto mr-5 cursor-pointer duration-700 hover:scale-[105%]">
     </form>
     <div id="search" class="absolute left-0 right-0 w-[500px] max-h-[250px] overflow-auto mx-auto bg-[#ffffff36] backdrop-blur-sm rounded-3xl mt-1 pt-2 z-30 hidden duration-700 animate-fadeIn ">
-        @if (marque() !== undefined) {
+        @if (result() !== undefined) {
             @for (item of result(); track item) {
                 <div class="h-5 text-center mb-2 rounded-full hover:bg-[#342250] duration-200 cursor-pointer animate-fadeIn ">
-                    {{item}}
+                    {{item['name']}}
                 </div>
             }
         }
@@ -26,5 +26,26 @@
     
     <div class="text-4xl text-white text-center mt-8">
         Montre {{marque()?.nom}}
+    </div>
+
+    <div class="justify-center flex mt-12 pb-4">
+        <div class="w-[340px] h-[437px] bg-stone-700 rounded-[30px]">
+            <div class="h-[277px] bg-[#ffffff33] rounded-[30px]">
+                <img ngSrc="view.svg" alt="" width="33" height="33" class="ml-[280px]  pt-2 absolute">
+                <img src="versace/VERSACE DAPHNIS DORÉE.png" alt="" class="mx-auto pt-2">
+            </div>
+            <div class="text-base font-normal text-white mt-8 pl-6">
+                VERSACE DAPHNIS DORÉE
+            </div>
+            <div class="mt-3 text-sm text-white w-[94px] h-[23px] bg-pink-500 text-center rounded-full ml-6 pt-[2px] tracking-wider">
+                Femme
+            </div>
+            <div class="flex justify-between mt-6 pl-6 pr-8">
+                <div class="text-base tracking-wider font-semibold text-white items-center">
+                    600.000f
+                </div>
+                <img ngSrc="achat.svg" alt="achat" width="33" height="33">
+            </div>
+        </div>
     </div>
 </div>
