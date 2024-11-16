@@ -6,7 +6,7 @@ import { PanierComponent } from './panier/panier.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,NgOptimizedImage,PanierComponent,RouterLink],
+  imports: [RouterOutlet,NgOptimizedImage,RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, ElementRef, inject, signal ,computed } from '@angular/core';
+import { Component, ElementRef, inject, signal ,computed, Input } from '@angular/core';
 import { MontreService } from '../montre.service';
 
 @Component({
@@ -12,7 +12,8 @@ import { MontreService } from '../montre.service';
 export class PanierComponent {
 
   readonly service = inject(MontreService)
-  items = signal(JSON.parse(this.service.getItem('produits') || '[]'))
+  
+  @Input() item = []
 
   el:any
   constructor(el:ElementRef){

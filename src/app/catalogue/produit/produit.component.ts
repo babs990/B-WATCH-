@@ -4,11 +4,12 @@ import { MontreService } from '../../montre.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NgOptimizedImage } from '@angular/common';
 import { FooterComponent } from '../../footer/footer.component';
+import { PanierComponent } from '../../panier/panier.component';
 
 @Component({
   selector: 'app-produit',
   standalone: true,
-  imports: [NgOptimizedImage,FooterComponent],
+  imports: [NgOptimizedImage,FooterComponent,PanierComponent],
   templateUrl: './produit.component.html',
   styleUrl: './produit.component.css'
 })
@@ -22,8 +23,8 @@ export class ProduitComponent{
   readonly searchInput = signal('')
   private element : any
   readonly loading = computed(() => !this.marque());
-  produits:object[] = []
-  
+  produits = []
+  item = []
   
   readonly result = computed(()=>{
     return this.marque()?.produits.filter((item)=>{
@@ -43,12 +44,16 @@ export class ProduitComponent{
   }
 
   // Ajouter objet dans le localStorage
-  addToCart( item:object){
+  addToCart( product:never){
 
-    if(!this.service.getItem('produits')?.includes(JSON.stringify(item))){
-      this.produits.push(item)
+    if(!this.service.getItem('produits')?.includes(JSON.stringify(product))){
+      this.produits.push(product)
+      this.item = this.produits
+      return this.service.setItem('produits',JSON.stringify(this.produits))
     }
-
-    return this.service.setItem('produits',JSON.stringify(this.produits))
+    else{
+      this.item = this.produits
+      return this.service.setItem('produits',JSON.stringify(this.produits))
+    }
   }
 }
