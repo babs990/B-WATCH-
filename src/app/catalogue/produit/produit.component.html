@@ -1,4 +1,4 @@
-<app-panier [item]="item"></app-panier>
+<app-panier></app-panier>
 
 <div class="pt-[150px]">
     <!-- barre de recherche -->
@@ -52,7 +52,7 @@
                     <div class="text-base tracking-wider font-semibold text-white items-center">
                         {{item['prix']}}.000f
                     </div>
-                    <img ngSrc="achat.svg" alt="achat" width="33" height="33" class="cursor-pointer hover:scale-[110%] duration-200" (click)="addToCart(item)">
+                    <img ngSrc="achat.svg" alt="achat" width="33" height="33" class="cursor-pointer hover:scale-[110%] duration-200" (click)="addToCart(item['name'],item)">
                 </div>
             </div>
         }

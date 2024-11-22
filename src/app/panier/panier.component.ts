@@ -13,6 +13,7 @@ export class PanierComponent {
 
   readonly service = inject(MontreService)
   
+  
   @Input() item = []
 
   el:any
