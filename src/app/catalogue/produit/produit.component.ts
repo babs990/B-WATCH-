@@ -23,7 +23,8 @@ export class ProduitComponent{
   readonly searchInput = signal('')
   private element : any
   readonly loading = computed(() => !this.marque());
-  item = []
+  item : string[] = []
+  produits = '{}'
   
   readonly result = computed(()=>{
     return this.marque()?.produits.filter((item)=>{
@@ -44,6 +45,9 @@ export class ProduitComponent{
 
   // Ajouter objet dans le localStorage
   addToCart( nom:string,product:never){
-    
+    localStorage.setItem(nom,JSON.stringify(product))
+    this.item.push((localStorage.getItem(nom) || '{}'))
+    this.produits = `${this.item}`
+    console.log(this.item)
   }
 }
