@@ -14,11 +14,8 @@ export class PanierComponent {
   readonly service = inject(MontreService)
   
   
-  @Input() item : string[] = []
+  @Input() item :any = []
 
-  produits = this.item.map((i)=>{
-    JSON.parse(i)
-  })
 
   el:any
   constructor(el:ElementRef){
