@@ -5,11 +5,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import _, { shuffle } from 'underscore'
 import { FooterComponent } from '../footer/footer.component';
 import { RouterLink } from '@angular/router';
+import { PanierComponent } from '../panier/panier.component';
 
 @Component({
   selector: 'app-catalogue',
   standalone: true,
-  imports: [NgOptimizedImage,FooterComponent,RouterLink],
+  imports: [NgOptimizedImage,FooterComponent,RouterLink,PanierComponent],
   templateUrl: './catalogue.component.html',
   styleUrl: './catalogue.component.css'
 })
@@ -19,22 +20,19 @@ export class CatalogueComponent{
   readonly marque = toSignal(this.service.getMarque())
   marqueFiltre = signal('homme')
   readonly searchInput = signal('')
-
+  item : any= []
   readonly marqueHomme = computed(()=>{
     return this.marque()?.filter((element)=>element.type == 'Homme')
   })
-
   readonly marqueFemme = computed(()=>{
     return this.marque()?.filter((element)=>element.type == 'Femme')
   })
-
   readonly marquePopulaire = computed(()=>{
     if(this.marque() != undefined){
       return _.shuffle( this.marque()!.filter((element)=>element.etoiles >= 4)) 
     }
     return
   })
-
   readonly result = computed(()=>{
     return this.marque()?.filter((item)=>{
       return item.nom.toUpperCase().includes(this.searchInput().toUpperCase())
@@ -42,7 +40,13 @@ export class CatalogueComponent{
   })
   readonly loading = computed(() => !this.marque()); 
   private element:any
-    
+   
+  ngOnInit(): void {
+    for (var i = 0; i < localStorage.length; i++) {
+      this.item.push(JSON.parse(localStorage.getItem(localStorage.key(i) || '{}') || '{}'));
+    } 
+  }
+
 
   constructor(el:ElementRef){
     this.element=el

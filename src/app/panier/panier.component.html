@@ -21,7 +21,7 @@
             Panier d’achat
         </div>
         <div class="text-sm font-bold text-white px-3 pt-3 rounded-full bg-gradient-to-r from-[#5D3B88]  to-[#4b3272]">
-            03
+            {{count()}}
         </div>
     </div>
 
@@ -44,11 +44,15 @@
                     </div>
                 </div>
                 <div class="ml-auto mr-4 content-center grid gap-[40px]">
-                    <img ngSrc="exitCarte.svg" alt="exit" width="11" height="10" class="ml-auto">
+                    <img ngSrc="exitCarte.svg" alt="exit" width="11" height="10" class="ml-auto cursor-pointer" (click)="deleteProduit(item['name'])">
                     <div class="flex font-bold gap-1">
-                        <div class="w-[16px] h-[16px] rounded-full text-center bg-red-500 text-sm cursor-pointer">-</div>
+                        <button>
+                            <div class="w-[16px] h-[16px] rounded-full text-center bg-red-500 text-sm cursor-pointer">-</div>
+                        </button>
                         <div class="text-xs ">01</div>
-                        <div class="w-[16px] h-[16px] rounded-full text-center  bg-green-500 text-sm cursor-pointer">+</div>
+                        <button>
+                            <div class="w-[16px] h-[16px] rounded-full text-center  bg-green-500 text-sm cursor-pointer">+</div>
+                        </button>
                     </div>
                 </div>
             </div>

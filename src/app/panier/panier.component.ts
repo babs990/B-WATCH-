@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, ElementRef, inject, signal ,computed, Input } from '@angular/core';
+import { Component, ElementRef, inject, signal ,computed, Input, OnInit, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { MontreService } from '../montre.service';
 
 @Component({
@@ -9,17 +9,26 @@ import { MontreService } from '../montre.service';
   templateUrl: './panier.component.html',
   styleUrl: './panier.component.css'
 })
-export class PanierComponent {
+export class PanierComponent implements AfterViewInit {
 
   readonly service = inject(MontreService)
-  
-  
   @Input() item :any = []
-
+  @Input () count = signal(0)
+  @Output() delete: EventEmitter<string> = new EventEmitter()
+  
+  ngAfterViewInit(): void {
+    console.log(this.el.nativeElement.querySelector('#contenu').childElementCount)
+    this.count.set(this.el.nativeElement.querySelector('#contenu').childElementCount)
+  }
 
   el:any
   constructor(el:ElementRef){
     this.el = el
+  }
+
+  deleteProduit(nom : string){
+    localStorage.removeItem(nom)
+    this.delete.emit(nom)
   }
 
   hidePanier(){
