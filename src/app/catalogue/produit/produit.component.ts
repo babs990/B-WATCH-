@@ -25,6 +25,7 @@ export class ProduitComponent implements OnInit{
   readonly loading = computed(() => !this.marque());
   item : any[] = []
   donnees : any = []
+  total = signal(0)
   count = signal(0)
       
   readonly result = computed(()=>{
@@ -38,6 +39,9 @@ export class ProduitComponent implements OnInit{
       this.item.push(JSON.parse(localStorage.getItem(localStorage.key(i) || '{}') || '{}'));
     }
     
+    this.total.set(this.item.reduce((accumulator, currentValue) => accumulator + currentValue.prix,
+    0, ))
+
     this.count.set(this.item.length)
   }
 
@@ -57,12 +61,17 @@ export class ProduitComponent implements OnInit{
     if(!localStorage.getItem(nom)){
       localStorage.setItem(nom,JSON.stringify(product))
       this.item.push(JSON.parse(localStorage.getItem(nom) || '{}'))
-      this.count.set(this.item.length) 
+      console.log(this.item.map((i)=> i))
+      this.count.set(this.item.length)
+      this.total.set(this.item.reduce((accumulator, currentValue) => accumulator + currentValue.prix,
+      0, ))   
     }
   }
 
   // supprimer un produit 
   deleteToCart(nom : string){
     this.item = this.item.filter((item)=> item.name != nom)
+    this.total.set(this.item.reduce((accumulator, currentValue) => accumulator + currentValue.prix,
+    0, ))
   }
 }

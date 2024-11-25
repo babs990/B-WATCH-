@@ -46,11 +46,11 @@
                 <div class="ml-auto mr-4 content-center grid gap-[40px]">
                     <img ngSrc="exitCarte.svg" alt="exit" width="11" height="10" class="ml-auto cursor-pointer" (click)="deleteProduit(item['name'])">
                     <div class="flex font-bold gap-1">
-                        <button>
+                        <button (click)="decrement(item['name'])" [disabled]="count() <= 1">
                             <div class="w-[16px] h-[16px] rounded-full text-center bg-red-500 text-sm cursor-pointer">-</div>
                         </button>
-                        <div class="text-xs ">01</div>
-                        <button>
+                        <div [id]="item['name']" class="text-xs ">{{item['numb']}}</div>
+                        <button (click)="increment(item['name'])">
                             <div class="w-[16px] h-[16px] rounded-full text-center  bg-green-500 text-sm cursor-pointer">+</div>
                         </button>
                     </div>
@@ -63,7 +63,7 @@
     <div class="mt-8 w-[300px] mx-auto">
         <div class="flex justify-around text-white text-base font-bold mb-3">
             <div> Total </div>
-            <div> 30.000 fr </div>
+            <div> {{total()}}.000 fr </div>
         </div>
         <div class="w-full h-[1px] bg-[#342250]"></div>
         <div class="w-[300px] h-8 bg-green-500 font-bold text-white text-center rounded-full pt-1 shadow-ombreCarte mt-8 cursor-pointer hover:scale-[110%] duration-700" >

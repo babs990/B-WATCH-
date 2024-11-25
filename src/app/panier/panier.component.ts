@@ -14,6 +14,7 @@ export class PanierComponent implements AfterViewInit {
   readonly service = inject(MontreService)
   @Input() item :any = []
   @Input () count = signal(0)
+  @Input () total = signal(0)
   @Output() delete: EventEmitter<string> = new EventEmitter()
   
   ngAfterViewInit(): void {
@@ -36,6 +37,14 @@ export class PanierComponent implements AfterViewInit {
     this.el.nativeElement.querySelector('#doubleFenetre').classList.add('translate-x-full')
   }
 
-  
+  increment(nom : string){
+    this.el.nativeElement.querySelector('#' + nom).textContent = Number(this.el.nativeElement.querySelector('#' + nom).textContent) + 1
+  }
+
+  decrement(nom : string){
+    if(Number(this.el.nativeElement.querySelector('#' + nom).textContent) >1){
+      this.el.nativeElement.querySelector('#' + nom).textContent = Number(this.el.nativeElement.querySelector('#' + nom).textContent) - 1
+    }
+  }
 
 }
