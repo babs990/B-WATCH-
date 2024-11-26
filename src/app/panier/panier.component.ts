@@ -30,6 +30,7 @@ export class PanierComponent implements AfterViewInit {
   deleteProduit(nom : string){
     localStorage.removeItem(nom)
     this.delete.emit(nom)
+    sessionStorage.removeItem(nom)
   }
 
   hidePanier(){
@@ -39,12 +40,18 @@ export class PanierComponent implements AfterViewInit {
 
   increment(nom : string){
     this.el.nativeElement.querySelector('#' + nom).textContent = Number(this.el.nativeElement.querySelector('#' + nom).textContent) + 1
+    sessionStorage.setItem(nom ,this.el.nativeElement.querySelector('#' + nom).textContent)
   }
 
   decrement(nom : string){
     if(Number(this.el.nativeElement.querySelector('#' + nom).textContent) >1){
       this.el.nativeElement.querySelector('#' + nom).textContent = Number(this.el.nativeElement.querySelector('#' + nom).textContent) - 1
+      sessionStorage.setItem(nom ,this.el.nativeElement.querySelector('#' + nom).textContent)
     }
+  }
+
+  nombre(nom : string){
+    return sessionStorage.getItem(nom)
   }
 
 }

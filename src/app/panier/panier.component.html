@@ -49,7 +49,7 @@
                         <button (click)="decrement(item['name'])" [disabled]="count() <= 1">
                             <div class="w-[16px] h-[16px] rounded-full text-center bg-red-500 text-sm cursor-pointer">-</div>
                         </button>
-                        <div [id]="item['name']" class="text-xs ">{{item['numb']}}</div>
+                        <div [id]="item['name']" class="text-xs " [textContent]="nombre(item['name']) || 1">1</div>
                         <button (click)="increment(item['name'])">
                             <div class="w-[16px] h-[16px] rounded-full text-center  bg-green-500 text-sm cursor-pointer">+</div>
                         </button>

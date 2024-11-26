@@ -61,7 +61,6 @@ export class ProduitComponent implements OnInit{
     if(!localStorage.getItem(nom)){
       localStorage.setItem(nom,JSON.stringify(product))
       this.item.push(JSON.parse(localStorage.getItem(nom) || '{}'))
-      console.log(this.item.map((i)=> i))
       this.count.set(this.item.length)
       this.total.set(this.item.reduce((accumulator, currentValue) => accumulator + currentValue.prix,
       0, ))   
@@ -71,6 +70,7 @@ export class ProduitComponent implements OnInit{
   // supprimer un produit 
   deleteToCart(nom : string){
     this.item = this.item.filter((item)=> item.name != nom)
+    this.count.set(this.item.length)
     this.total.set(this.item.reduce((accumulator, currentValue) => accumulator + currentValue.prix,
     0, ))
   }
