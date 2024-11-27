@@ -39,18 +39,18 @@
                     <div class="text-sm font-extralight">
                         {{item['couleur']}}
                     </div>
-                    <div class="text-sm font-bold ">
+                    <div [id]="item['img']" class="text-sm font-bold " [class]="item['name']">
                         {{item['prix']}}.000 fr
                     </div>
                 </div>
                 <div class="ml-auto mr-4 content-center grid gap-[40px]">
                     <img ngSrc="exitCarte.svg" alt="exit" width="11" height="10" class="ml-auto cursor-pointer" (click)="deleteProduit(item['name'])">
                     <div class="flex font-bold gap-1">
-                        <button (click)="decrement(item['name'])" [disabled]="count() <= 1">
+                        <button (click)="decrement(item['name'],item['prix'])">
                             <div class="w-[16px] h-[16px] rounded-full text-center bg-red-500 text-sm cursor-pointer">-</div>
                         </button>
                         <div [id]="item['name']" class="text-xs " [textContent]="nombre(item['name']) || 1">1</div>
-                        <button (click)="increment(item['name'])">
+                        <button (click)="increment(item['name'],item['prix'])">
                             <div class="w-[16px] h-[16px] rounded-full text-center  bg-green-500 text-sm cursor-pointer">+</div>
                         </button>
                     </div>

@@ -1,6 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, ElementRef, inject, signal ,computed, Input, OnInit, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { MontreService } from '../montre.service';
+import { object } from 'underscore';
 
 @Component({
   selector: 'app-panier',
@@ -38,20 +39,24 @@ export class PanierComponent implements AfterViewInit {
     this.el.nativeElement.querySelector('#doubleFenetre').classList.add('translate-x-full')
   }
 
-  increment(nom : string){
+  increment(nom : string, prix: number){
     this.el.nativeElement.querySelector('#' + nom).textContent = Number(this.el.nativeElement.querySelector('#' + nom).textContent) + 1
     sessionStorage.setItem(nom ,this.el.nativeElement.querySelector('#' + nom).textContent)
+    sessionStorage.setItem('total' , `${this.total}`)
+    this.total.set(this.total() + prix) 
   }
 
-  decrement(nom : string){
+  decrement(nom : string, prix: number){
     if(Number(this.el.nativeElement.querySelector('#' + nom).textContent) >1){
       this.el.nativeElement.querySelector('#' + nom).textContent = Number(this.el.nativeElement.querySelector('#' + nom).textContent) - 1
       sessionStorage.setItem(nom ,this.el.nativeElement.querySelector('#' + nom).textContent)
+      sessionStorage.setItem('total' , `${this.total}`)
+      this.total.set(this.total() - prix) 
     }
   }
 
   nombre(nom : string){
     return sessionStorage.getItem(nom)
-  }
+  } 
 
 }
