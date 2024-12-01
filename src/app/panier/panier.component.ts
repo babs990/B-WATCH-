@@ -21,6 +21,9 @@ export class PanierComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     console.log(this.el.nativeElement.querySelector('#contenu').childElementCount)
     this.count.set(this.el.nativeElement.querySelector('#contenu').childElementCount)
+    if(sessionStorage.getItem('total')){
+      this.total.set(Number(sessionStorage.getItem('total')))
+    }
   }
 
   el:any
@@ -42,16 +45,16 @@ export class PanierComponent implements AfterViewInit {
   increment(nom : string, prix: number){
     this.el.nativeElement.querySelector('#' + nom).textContent = Number(this.el.nativeElement.querySelector('#' + nom).textContent) + 1
     sessionStorage.setItem(nom ,this.el.nativeElement.querySelector('#' + nom).textContent)
-    sessionStorage.setItem('total' , `${this.total}`)
     this.total.set(this.total() + prix) 
+    sessionStorage.setItem('total' , `${this.total()}`)
   }
 
   decrement(nom : string, prix: number){
     if(Number(this.el.nativeElement.querySelector('#' + nom).textContent) >1){
       this.el.nativeElement.querySelector('#' + nom).textContent = Number(this.el.nativeElement.querySelector('#' + nom).textContent) - 1
       sessionStorage.setItem(nom ,this.el.nativeElement.querySelector('#' + nom).textContent)
-      sessionStorage.setItem('total' , `${this.total}`)
       this.total.set(this.total() - prix) 
+      sessionStorage.setItem('total' , `${this.total()}`)
     }
   }
 

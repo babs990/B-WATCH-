@@ -1,16 +1,17 @@
 import { NgOptimizedImage } from '@angular/common';
-import { AfterViewInit, Component, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, signal } from '@angular/core';
 import { marques, nouveaux } from './marque';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PanierComponent } from '../panier/panier.component';
 import { FooterComponent } from "../footer/footer.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-acceuil',
   standalone: true,
-  imports: [NgOptimizedImage, ReactiveFormsModule, PanierComponent, FooterComponent],
+  imports: [NgOptimizedImage, ReactiveFormsModule, PanierComponent, FooterComponent,RouterLink],
   templateUrl: './acceuil.component.html',
   styleUrl: './acceuil.component.css'
 })
@@ -19,10 +20,18 @@ export class AcceuilComponent implements AfterViewInit{
   marques = signal(marques)
   nouveautes = signal(nouveaux)
   index!: number;
+  item : any= []
+  element : any
   i=0
+  constructor(el : ElementRef){
+    this.element = el
+  }
 
   // Animations
   ngAfterViewInit(): void {
+    for (var i = 0; i < localStorage.length; i++) {
+      this.item.push(JSON.parse(localStorage.getItem(localStorage.key(i) || '{}') || '{}'));
+    } 
 
     // animation de la montre dans le hero
     gsap.registerPlugin(ScrollTrigger);
@@ -111,14 +120,20 @@ export class AcceuilComponent implements AfterViewInit{
     })
   }
 
-  clickleft(){
-    if(this.i>0){
-      this.i--
+  clickleft(nom:string){
+    if(this.element.nativeElement.querySelector('#' + nom)?.classList.contains('-translate-x-[100px]')){
+      this.element.nativeElement.querySelector('#' + nom)?.classList.add('translate-x-[100px]')
+      this.element.nativeElement.querySelector('#' + nom)?.classList.remove('-translate-x-[100px]')
+    }else{
+      this.element.nativeElement.querySelector('#' + nom)?.classList.add('translate-x-[100px]')
     }
   }
-  clickright(){
-    if(this.i<2){
-      this.i++
+  clickright(nom:string){
+    if(this.element.nativeElement.querySelector('#' + nom)?.classList.contains('translate-x-[100px]')){
+      this.element.nativeElement.querySelector('#' + nom)?.classList.add('-translate-x-[100px]')
+      this.element.nativeElement.querySelector('#' + nom)?.classList.remove('translate-x-[100px]')
+    }else{
+      this.element.nativeElement.querySelector('#' + nom)?.classList.add('-translate-x-[100px]')
     }
   }
 }

@@ -2,7 +2,7 @@
 
 <div #catalogue id="catalogue" class="pt-40  text-white">
     <!-- barre de recherche -->
-    <form class="flex h-[40px] w-[500px] mx-auto bg-[#ffffff36] backdrop-blur-sm rounded-full shadow-ombreCarte">
+    <form class="flex h-[40px] w-[500px] mx-auto bg-[#ffffff36] backdrop-blur-sm rounded-full shadow-ombreCarte" >
         <input 
           type="text" 
           class="bg-[#fff0] w-[445px] rounded-l-full focus:outline-none pl-8 text-white placeholder-[#ffffff36] placeholder:font-extralight"
@@ -11,21 +11,20 @@
           [value]="searchInput()"
           (input)="searchInput.set(input.value)"
           (focus)="searchReveal()"
-          (blur)="searchHide()"
         >
         <div class="h-[38px] w-[1px] bg-[#d9d9d933]"></div>
         <img ngSrc="Search.svg" alt="search" width="25" height="25" class="w-[25px] ml-auto mr-5 cursor-pointer duration-700 hover:scale-[105%]">
     </form>
     <div id="search" class="absolute left-0 right-0 w-[500px] max-h-[250px] overflow-auto mx-auto bg-[#ffffff36] backdrop-blur-sm rounded-3xl mt-1 pt-2 z-30 hidden duration-700 animate-fadeIn ">
         @for (item of result(); track item) {
-            <div class="h-5 text-center mb-2 rounded-full hover:bg-[#342250] duration-200 cursor-pointer animate-fadeIn ">
+            <div [routerLink]="['/catalogue/produit',item.id]" class="h-5 text-center mb-2 rounded-full hover:bg-[#342250] duration-200 cursor-pointer animate-fadeIn ">
                 {{item.nom}}
             </div>
         }
     </div>
 
     <!-- filtrer resultats -->
-    <div class="flex text-sm text-white items-center gap-2 mt-9 mb-12 pl-24">
+    <div (click)="searchHide()" class="flex text-sm text-white items-center gap-2 mt-9 mb-12 pl-24">
         <img 
           ngSrc="filtre.svg" 
           alt="filtre" 
@@ -62,7 +61,8 @@
         </div>
     </div>
 
-    <div class="mb-3 ">
+    <!-- Catalogue -->
+    <div class="mb-3 " (click)="searchHide()">
         @if(loading()){
             <img src="logo.svg" alt="logo" class="animate-bounce mx-auto content-center">
         }
@@ -71,12 +71,12 @@
             <div class="text-3xl font-bold pl-24">
                 Homme
             </div>
-            <div class="mt-9 cursor-pointer gap-16 w-full grid grid-cols-[290px_290px_290px_290px] gap justify-center">
+            <div class="mt-9  gap-16 w-full grid grid-cols-[290px_290px_290px_290px] gap justify-center">
                 @for (item of marqueHomme(); track item) {
                     <div>
                         <div 
                           [id]="item?.nom" 
-                          class="w-[290px] h-[320px] rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl duration-500 hover:scale-[95%] shadow-ombreCarte grid overflow-hidden"
+                          class="w-[290px] h-[320px] cursor-pointer rounded-[44px] bg-[#ffffff2f] backdrop-blur-3xl duration-500 hover:scale-[95%] shadow-ombreCarte grid overflow-hidden"
                           [routerLink]="['/catalogue/produit',item.id]" 
                           >
                           <img [ngSrc]="item.image" [alt]="item.nom" class="mx-auto pt-3 duration-700 hover:scale-[110%]" height="240" width="165">
@@ -135,7 +135,7 @@
             </div> 
         }
     </div>
-    <app-footer></app-footer>
+    <app-footer (click)="searchHide()"></app-footer>
 </div>
 
 

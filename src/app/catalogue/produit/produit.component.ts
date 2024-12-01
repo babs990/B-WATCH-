@@ -69,9 +69,13 @@ export class ProduitComponent implements OnInit{
 
   // supprimer un produit 
   deleteToCart(nom : string){
+    const n = this.item.filter((item)=> item.name == nom)
+    const i = Number(sessionStorage.getItem(nom) || '1')
     this.item = this.item.filter((item)=> item.name != nom)
     this.count.set(this.item.length)
-    this.total.set(this.item.reduce((accumulator, currentValue) => accumulator + currentValue.prix,
-    0, ))
+    const t = Number(sessionStorage.getItem('total') || `${this.total()}`) - (n[0].prix*i)
+    console.log(t)
+    this.total.set(t)
+    sessionStorage.setItem('total',`${this.total()}`)
   }
 }

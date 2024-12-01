@@ -1,3 +1,5 @@
+<app-panier [item]="item"></app-panier>
+
 <!-- entete de la page -->
 <div class="h-[768px] flex pt-[200px] justify-between">
     <!-- header gauche -->
@@ -6,7 +8,10 @@
             <div class="text-6xl text-white w-[350px] font-medium leading-[67px] bg-gradient-to-r from-white to-[#bbbbbb] inline-block text-transparent bg-clip-text tracking-[0.225rem]"> 
                 Achetez la montre de vos rêves 
             </div>
-            <button class="text-base text-center w-[168px] h-[38px] bg-gradient-to-r from-white to-[#bbbbbb] font-bold rounded-full ml-[30px] duration-700 hover:scale-[110%]">
+            <button 
+              class="text-base text-center w-[168px] h-[38px] bg-gradient-to-r from-white to-[#bbbbbb] font-bold rounded-full ml-[30px] duration-700 hover:scale-[110%]"
+              routerLink="/catalogue"
+            >
                 Catalogue
             </button>
         </div>
@@ -23,7 +28,10 @@
                 Les meilleurs montres sur le marché !
             </div>
         </div>
-        <div class="w-[244px] h-[214px] bg-gradient-to-bl from-[#5c3b885b] via-[#4b2f6c11] to-[#5D3B8800] content-center rounded-[30px] ">
+        <div 
+          class="w-[244px] h-[214px] bg-gradient-to-bl from-[#5c3b885b] via-[#4b2f6c11] to-[#5D3B8800] content-center rounded-[30px] "
+          routerLink="/catalogue"
+        >
             <div class="w-[240px] h-[210px]  bg-gradient-to-bl from-[#ffffff09] via-[#ffffff07] to-[#fff0] backdrop-blur-lg rounded-[30px] grid gap-[10px] content-center cursor-pointer">
                 <img ngSrc="lacoste/montre Lacoste2.svg" alt="montre" width="62" height="68" class="mx-auto">
                 <div class=" text-xl font-bold bg-gradient-to-r from-[#5D3B88] to-[#342250] inline-block text-transparent bg-clip-text text-center">
@@ -52,7 +60,10 @@
     </div>
     <div class="flex gap-16 mt-16 justify-center">
         @for (item of marques(); track item) {
-            <div class="w-[213px] h-[189px] rounded-[61px] bg-gradient-to-r from-[#5D3B88] to-[#342250] flex justify-between shadow-ombre1 cursor-pointer hover:scale-[105%] duration-500">
+            <div 
+              class="w-[213px] h-[189px] rounded-[61px] bg-gradient-to-r from-[#5D3B88] to-[#342250] flex justify-between shadow-ombre1 cursor-pointer hover:scale-[105%] duration-500"
+              [routerLink]="['/catalogue/produit', item.id]"
+            >
                 <div class="text-white text-2xl font-bold content-center text-center w-[105px]">
                     {{item.nom}}
                 </div>
@@ -98,15 +109,21 @@
             <div class="produit w-[200px] h-[265px] hover:scale-[110%] duration-500">
                 <div class="w-[200px] h-[200px] rounded-full bg-gradient-to-tr from-[#ffffff31] to-[#ffffff0c] backdrop-blur-lg mx-auto border-[1px] border-r-[#342250] border-t-[#342250] border-l-[#5D3B88] border-b-[#5D3B88] content-center">
                     <div class="flex justify-between px-4">
-                        <img ngSrc="Chevron Left.svg" alt="fleche" width="13" height="22" class="hover:scale-[110%] duration-200 cursor-pointer" (click)="clickleft()">
-                        <div class="">
-                            <img [src]="item.img[i]" [alt]="item.nom" height="118">
+                        <img ngSrc="Chevron Left.svg" alt="fleche" width="13" height="22" class="hover:scale-[110%] duration-200 cursor-pointer" (click)="clickleft(item.nom2)">
+                        <div class="overflow-hidden w-[90px]  ml-1">
+                            <div [id]="item.nom2" class="flex gap-5 ">
+                                @for (i of item.img; track i){
+                                    <div class="min-w-[80px] my-auto">
+                                        <img [src]="i" [alt]="item.nom" height="118" class="w-[90px]">
+                                    </div>
+                                }
+                            </div>
                         </div>
-                        <img ngSrc="Chevron Right.svg" alt="fleche" width="13" height="22" class="hover:scale-[110%] duration-200 cursor-pointer" (click)="clickright()">    
+                        <img ngSrc="Chevron Right.svg" alt="fleche" width="13" height="22" class="hover:scale-[110%] duration-200 cursor-pointer" (click)="clickright(item.nom2)">    
                     </div>
                     <div class="flex justify-center mt-4 gap-2">
                         <div 
-                          class="h-2 w-2 rounded-full"
+                          class="h-2 w-2 rounded-full tra"
                           [class.bg-slate-300]="i!=0"
                           [class.bg-[#171229]]="i==0"
                         ></div>
@@ -129,6 +146,15 @@
             </div>
         }
     </div>
+    <div class="flex justify-center mt-16">
+        <button 
+          class="text-base text-center w-[168px] h-[38px] bg-gradient-to-r from-white to-[#bbbbbb] font-bold rounded-full  duration-700 hover:scale-[110%] "
+          routerLink="/catalogue"
+        >
+          Catalogue
+        </button>
+    </div>
+
 </div>
 
 <!-- article -->
@@ -149,7 +175,7 @@
 
 <!-- formulaire -->
 <div id="form" class="flex justify-between w-[942px] rounded-[61px] bg-gradient-to-tr from-[#ffffff31] to-[#ffffff0c] backdrop-blur-lg mx-auto mt-48 overflow-hidden">
-    <img id="imageForm" ngSrc="imageForm.svg" alt="montre" width="410" height="487" priority="high">
+    <img id="imageForm" ngSrc="imageForm.png" alt="montre" width="410" height="487" priority="high">
     <form id="formForm" class="w-[442px] mx-auto">
         <div class="text-3xl font-bold text-white mb-[30px] mt-[30px] text-center">
             Contactez nous !
