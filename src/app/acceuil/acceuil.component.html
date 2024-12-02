@@ -111,7 +111,7 @@
                     <div class="flex justify-between px-4">
                         <img ngSrc="Chevron Left.svg" alt="fleche" width="13" height="22" class="hover:scale-[110%] duration-200 cursor-pointer" (click)="clickleft(item.nom2)">
                         <div class="overflow-hidden w-[90px]  ml-1">
-                            <div [id]="item.nom2" class="flex gap-5 ">
+                            <div [id]="item.nom2" class="flex gap-5 duration-200 -translate-x-0">
                                 @for (i of item.img; track i){
                                     <div class="min-w-[80px] my-auto">
                                         <img [src]="i" [alt]="item.nom" height="118" class="w-[90px]">
@@ -121,21 +121,15 @@
                         </div>
                         <img ngSrc="Chevron Right.svg" alt="fleche" width="13" height="22" class="hover:scale-[110%] duration-200 cursor-pointer" (click)="clickright(item.nom2)">    
                     </div>
-                    <div class="flex justify-center mt-4 gap-2">
+                    <div class="flex justify-center mt-4 gap-2" [class]="item.nom2">
                         <div 
-                          class="h-2 w-2 rounded-full tra"
-                          [class.bg-slate-300]="i!=0"
-                          [class.bg-[#171229]]="i==0"
+                          class="h-2 w-2 rounded-full bg-[#171229]"
                         ></div>
                         <div 
                           class="h-2 w-2 rounded-full bg-slate-300"
-                          [class.bg-slate-300]="i!=1"
-                          [class.bg-[#171229]]="i==1"
                         ></div>
                         <div 
                           class="h-2 w-2 rounded-full bg-slate-300"
-                          [class.bg-slate-300]="i!=2"
-                          [class.bg-[#171229]]="i==2"
                         ></div>
                     </div>
                 </div>

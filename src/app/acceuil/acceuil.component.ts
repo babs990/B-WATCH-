@@ -121,19 +121,47 @@ export class AcceuilComponent implements AfterViewInit{
   }
 
   clickleft(nom:string){
-    if(this.element.nativeElement.querySelector('#' + nom)?.classList.contains('-translate-x-[100px]')){
-      this.element.nativeElement.querySelector('#' + nom)?.classList.add('translate-x-[100px]')
-      this.element.nativeElement.querySelector('#' + nom)?.classList.remove('-translate-x-[100px]')
-    }else{
-      this.element.nativeElement.querySelector('#' + nom)?.classList.add('translate-x-[100px]')
+    const e = this.element.nativeElement.querySelector('#' + nom)?.classList
+
+    if(e.contains('-translate-x-[95px]')){
+      e.remove('-translate-x-[95px]')
+      e.add('-translate-x-0')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[0].classList.remove('bg-slate-300')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[0].classList.add('bg-[#171229]')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[1].classList.remove('bg-[#171229]')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[1].classList.add('bg-slate-300')
+    }
+    else if(e.contains('-translate-x-[190px]')){
+      e.remove('-translate-x-[190px]')
+      e.add('-translate-x-[95px]')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[1].classList.remove('bg-slate-300')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[1].classList.add('bg-[#171229]')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[2].classList.remove('bg-[#171229]')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[2].classList.add('bg-slate-300')
     }
   }
+
   clickright(nom:string){
-    if(this.element.nativeElement.querySelector('#' + nom)?.classList.contains('translate-x-[100px]')){
-      this.element.nativeElement.querySelector('#' + nom)?.classList.add('-translate-x-[100px]')
-      this.element.nativeElement.querySelector('#' + nom)?.classList.remove('translate-x-[100px]')
-    }else{
-      this.element.nativeElement.querySelector('#' + nom)?.classList.add('-translate-x-[100px]')
+    const e = this.element.nativeElement.querySelector('#' + nom)?.classList
+
+    if(e.contains('-translate-x-[95px]')){
+      e.remove('-translate-x-[95px]')
+      e.add('-translate-x-[190px]')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[2].classList.remove('bg-slate-300')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[2].classList.add('bg-[#171229]')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[1].classList.remove('bg-[#171229]')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[1].classList.add('bg-slate-300')
+
     }
+    else if(e.contains('-translate-x-0')){
+      e.remove('-translate-x-0')
+      e.add('-translate-x-[95px]')
+      console.log(this.element.nativeElement.querySelector('.' + nom).childNodes)
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[1].classList.remove('bg-slate-300')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[1].classList.add('bg-[#171229]')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[0].classList.remove('bg-[#171229]')
+      this.element.nativeElement.querySelector('.' + nom)?.childNodes[0].classList.add('bg-slate-300')
+    }
+
   }
 }
