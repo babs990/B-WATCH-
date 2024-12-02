@@ -168,7 +168,11 @@
 </div>
 
 <!-- formulaire -->
-<div id="form" class="flex justify-between w-[942px] rounded-[61px] bg-gradient-to-tr from-[#ffffff31] to-[#ffffff0c] backdrop-blur-lg mx-auto mt-48 overflow-hidden">
+<div 
+  [formGroup]="form" 
+  id="form" 
+  class="flex justify-between w-[942px] rounded-[61px] bg-gradient-to-tr from-[#ffffff31] to-[#ffffff0c] backdrop-blur-lg mx-auto mt-48 overflow-hidden"
+>
     <img id="imageForm" ngSrc="imageForm.png" alt="montre" width="410" height="487" priority="high">
     <form id="formForm" class="w-[442px] mx-auto">
         <div class="text-3xl font-bold text-white mb-[30px] mt-[30px] text-center">
@@ -179,22 +183,43 @@
                 Nom et Prénoms 
             </label>
             <input 
-              type="text" class="h-[33px] bg-[#171229] border-[1px] border-[#5D3B88] rounded-[6px] focus:border-blue-700 focus:outline-none caret-blue-700"
+              type="text" 
+              class="h-[33px] bg-[#171229] border-[1px] border-[#5D3B88] rounded-[6px] focus:border-blue-700 focus:outline-none caret-blue-700"
+              [class.border-red-600]="name.dirty && name.invalid"
+              formControlName="name"
             >
         </div>
         <div class="grid gap-2 text-white font-bold my-5 ">
             <label for="">
                 Emails 
             </label>
-            <input type="text" class="h-[33px] bg-[#171229] border-[1px] border-[#5D3B88] rounded-[6px] focus:border-blue-700 focus:outline-none caret-blue-700" >
+            <input 
+              type="text" 
+              class="h-[33px] bg-[#171229] border-[1px] border-[#5D3B88] rounded-[6px] focus:border-blue-700 focus:outline-none caret-blue-700" 
+              [class.border-red-600]="emails.dirty && emails.invalid"
+              formControlName="emails"
+            >
         </div>
         <div class="grid gap-2 text-white font-bold">
             <label for="">
                 Message
             </label>
-            <input type="text" class="h-[100px] bg-[#171229] border-[1px] border-[#5D3B88] rounded-[6px] focus:border-blue-700 focus:outline-none caret-blue-700 text-start resize-none w-full box-border px-3 py-3 justify-start">
+            <input 
+              type="text" 
+              class="h-[100px] bg-[#171229] border-[1px] border-[#5D3B88] rounded-[6px] focus:border-blue-700 focus:outline-none caret-blue-700 text-start resize-none w-full box-border px-3 py-3 justify-start"
+              [class.border-red-600]="message.dirty && message.invalid"
+              formControlName="message"
+            >
         </div>
-        <button class="text-base text-center w-[168px] h-[38px] bg-green-600 text-white font-bold rounded-full ml-[137px] mt-5 duration-700 hover:scale-[110%]">
+        <div class="mt-28 duration-200 hidden">
+            <img ngSrc="Success.png" alt="" width="180" height="180" class="mx-auto">
+            <div class="font-bold text-3xl mt-4 text-center text-white"> Réponse envoyée </div>
+        </div>
+        <button 
+          class="text-base text-center w-[168px] h-[38px] bg-green-600 text-white font-bold rounded-full ml-[137px] mt-5 duration-700 hover:scale-[110%]"
+          [disabled]="form.invalid"
+          (click)="onSubmit()"
+        >
             Envoyer
         </button>
     </form>

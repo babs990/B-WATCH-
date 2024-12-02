@@ -23,10 +23,51 @@ export class AcceuilComponent implements AfterViewInit{
   item : any= []
   element : any
   i=0
+
   constructor(el : ElementRef){
     this.element = el
   }
 
+  readonly form = new FormGroup({
+    name: new FormControl('',[
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(30),
+      Validators.pattern(/^[a-zA-Zéè]+$/)
+    ]),
+    emails: new FormControl('',[
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(30),
+      Validators.pattern(/^([a-z0-9\.]+)@([a-z\.]+)$/)
+    ]),
+    message: new FormControl('',[
+      Validators.minLength(5)
+    ])
+  })
+
+  get name() {
+    return this.form.get('name') as FormControl;
+  }
+
+  get emails() {
+    return this.form.get('emails') as FormControl;
+  }
+
+  get message() {
+    return this.form.get('message') as FormControl;
+  }
+
+  onSubmit(){
+    if(this.form.valid){
+      this.element.nativeElement.querySelector('#formForm').childNodes[0].classList.add('hidden')
+      this.element.nativeElement.querySelector('#formForm').childNodes[1].classList.add('hidden')
+      this.element.nativeElement.querySelector('#formForm').childNodes[2].classList.add('hidden')
+      this.element.nativeElement.querySelector('#formForm').childNodes[3].classList.add('hidden')
+      this.element.nativeElement.querySelector('#formForm').childNodes[4].classList.remove('hidden')
+      this.element.nativeElement.querySelector('#formForm').childNodes[5].classList.add('hidden')
+    }
+  }
   // Animations
   ngAfterViewInit(): void {
     for (var i = 0; i < localStorage.length; i++) {
