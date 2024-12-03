@@ -1,7 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, signal } from '@angular/core';
 import { marques, nouveaux } from './marque';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PanierComponent } from '../panier/panier.component';

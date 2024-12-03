@@ -22,6 +22,7 @@
             <div 
               class="rounded-full hover:px-2 hover:bg-[#171229] duration-300 cursor-pointer"
               routerLink="/catalogue"
+              (mouseenter)="revealCatalogue()"
             >
                 Catalogue 
             </div>
@@ -35,6 +36,18 @@
         >
             <img ngSrc="dropIcon.svg" alt="logo" width="35" height="35">
         </div>
-    </nav>
+      </nav>
+      <div class="fixed z-40 w-[900px] h-[300px] top-0 bottom-0 mt-[90px] rounded-[60px] bg-[#ffffff17] backdrop-blur-3xl left-0 right-0 mx-auto hidden duration-300" id="catalogue" (mouseleave)="hideCatalogue()">
+        <div class="pt-9 grid grid-rows-[20px_20px_20px_20px] grid-cols-[100px_100px_100px_100px_100px] gap-10 justify-center ">
+          @for (item of marque(); track $index) {
+            <div 
+              class="text-white font-semibold hover:bg-[#171229] text-center rounded-xl cursor-pointer"
+              [routerLink]="['/catalogue/produit',item.id]"
+            >
+              {{item.nom}}
+            </div>
+          }
+        </div>
+      </div>
     <router-outlet></router-outlet>
 </div>
