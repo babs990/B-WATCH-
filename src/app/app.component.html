@@ -1,4 +1,5 @@
 <div class="bg-[#171229]">
+  @if (ecran>1285) {
     <!-- barre de navigation -->
     <nav 
       class="h-[40px] mt-[20px] w-[900px] rounded-full right-0 backdrop-blur-2xl left-0 mx-auto bg-[#ffffff17] fixed p-8 flex justify-between items-center z-30"
@@ -50,4 +51,10 @@
         </div>
       </div>
     <router-outlet></router-outlet>
+  }@else {
+    <div class="w-full h-screen content-center">
+      <div class="font-bold text-xl text-white text-center"> Version mobile indisponible. Veillez prendre un appareil de grande taille</div>
+      <img ngSrc="logo.svg" alt="logo" width="110" height="35" class="animate-bounce mx-auto mt-8">
+    </div>
+  }
 </div>

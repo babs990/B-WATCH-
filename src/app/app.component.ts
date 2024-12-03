@@ -16,7 +16,7 @@ export class AppComponent implements AfterViewInit{
 
   private service =inject(MontreService)
   readonly marque = toSignal(this.service.getMarque())
-  
+  ecran = window.innerWidth
   el:any
   constructor(el:ElementRef){
     this.el = el
