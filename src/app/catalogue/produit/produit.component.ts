@@ -21,6 +21,8 @@ export class ProduitComponent implements OnInit{
   readonly marques = toSignal(this.service.getMarque())
   readonly marque = computed (() => this.marques()?.find(item => item.id == this.id))
   readonly searchInput = signal('')
+  numb :number = 1
+  produit  = computed(()=> this.marque()?.produits.find((item)=>item['numb'] == this.numb))
   private element : any
   readonly loading = computed(() => !this.marque());
   item : any[] = []
@@ -65,6 +67,11 @@ export class ProduitComponent implements OnInit{
       this.total.set(this.item.reduce((accumulator, currentValue) => accumulator + currentValue.prix,
       0, ))   
     }
+  }
+
+  viewReveal(n : number){
+    this.numb = n
+    this.element.nativeElement.querySelector('#search').classList.remove('hidden')
   }
 
   // supprimer un produit 
