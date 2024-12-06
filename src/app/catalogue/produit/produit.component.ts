@@ -5,6 +5,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { NgOptimizedImage } from '@angular/common';
 import { FooterComponent } from '../../footer/footer.component';
 import { PanierComponent } from '../../panier/panier.component';
+import gsap from 'gsap';
 
 @Component({
   selector: 'app-produit',
@@ -54,6 +55,7 @@ export class ProduitComponent implements OnInit{
   searchReveal(){
     this.element.nativeElement.querySelector('#search').classList.remove('hidden')
   }
+
   searchHide(){
     this.element.nativeElement.querySelector('#search').classList.add('hidden')
   }
@@ -71,7 +73,16 @@ export class ProduitComponent implements OnInit{
 
   viewReveal(n : number){
     this.numb = n
-    this.element.nativeElement.querySelector('#search').classList.remove('hidden')
+    this.produit  = computed(()=> this.marque()?.produits.find((item)=>item['numb'] == this.numb))
+    this.element.nativeElement.querySelector('#view').classList.remove('hidden')
+    gsap.from('#productView',{
+      translateY:200,
+      duration:1,
+    })
+  }
+
+  hideReveal(){
+    this.element.nativeElement.querySelector('#view').classList.add('hidden')
   }
 
   // supprimer un produit 

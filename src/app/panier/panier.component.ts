@@ -2,6 +2,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { Component, ElementRef, inject, signal ,computed, Input, OnInit, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { MontreService } from '../montre.service';
 import { object } from 'underscore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-panier',
@@ -27,7 +28,7 @@ export class PanierComponent implements AfterViewInit {
   }
 
   el:any
-  constructor(el:ElementRef){
+  constructor(el:ElementRef  ){
     this.el = el
   }
 
@@ -57,6 +58,7 @@ export class PanierComponent implements AfterViewInit {
       sessionStorage.setItem('total' , `${this.total()}`)
     }
   }
+
 
   nombre(nom : string){
     return sessionStorage.getItem(nom)

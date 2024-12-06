@@ -43,7 +43,7 @@
           @for (item of marque(); track $index) {
             <div 
               class="text-white font-semibold hover:bg-[#171229] text-center rounded-xl cursor-pointer"
-              [routerLink]="['/catalogue/produit',item.id]"
+              (click)="click(item.id)"
             >
               {{item.nom}}
             </div>

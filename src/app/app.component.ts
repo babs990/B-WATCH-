@@ -1,6 +1,6 @@
 import { NgOptimizedImage } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, HostListener, inject, OnInit, viewChild } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { PanierComponent } from './panier/panier.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MontreService } from './montre.service';
@@ -18,13 +18,24 @@ export class AppComponent implements AfterViewInit{
   readonly marque = toSignal(this.service.getMarque())
   ecran = window.innerWidth
   el:any
-  constructor(el:ElementRef){
+  router : any
+
+  constructor(el:ElementRef , route : Router){
     this.el = el
+    this.router = route
   }
   
   ngAfterViewInit(): void {
     
   }
+
+  click(id : number){
+    this.router.navigate(['../catalogue/produit',id])
+  .then(() => {
+    window.location.reload();
+  });
+  }
+
   revealPanier(){
     this.el.nativeElement.querySelector('#fenetre').classList.remove('translate-x-full')
     this.el.nativeElement.querySelector('#doubleFenetre').classList.remove('translate-x-full')

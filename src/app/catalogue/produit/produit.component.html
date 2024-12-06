@@ -37,7 +37,10 @@
     <!-- carte -->
     <div class="justify-center grid grid-cols-[340px_340px_340px] mt-20 pb-4 gap-14">
         @for (item of marque()?.produits; track item) {
-            <div class="w-[340px] h-[437px] bg-stone-700 rounded-[30px] hover:scale-[105%] duration-700 cursor-pointer ">
+            <div 
+              class="w-[340px] h-[437px] bg-stone-700 rounded-[30px] hover:scale-[105%] duration-700 cursor-pointer " 
+              (click)="viewReveal(item['numb'])"
+            >
                 <div class="h-[277px] bg-[#ffffff33] rounded-[30px]">
                     <img ngSrc="view.svg" alt="view" width="33" height="33" class="ml-[280px]  pt-2 absolute cursor-pointer hover:scale-[110%] duration-200">
                     <img [src]="item['img']" [alt]="item['name']" class="mx-auto pt-2">
@@ -59,9 +62,33 @@
     </div>
 </div>
 
-<div class="fixed w-full h-full top-0 z-50 hidden">
-    <div class="text-3xl text-white z-[70]">{{produit()!['name']}}</div>
-    <div class=" bg-[#1712298a] w-full h-full absolute top-0 "></div>
+<div id="view" class="fixed w-full h-full top-0 z-50 hidden">
+    <div id="productView" class="fixed w-[605px] h-[633px] bg-[#ffffff17] backdrop-blur-3xl rounded-[41px] top-0 bottom-0 right-0 left-0 m-auto text-white z-[70]">
+        <img [ngSrc]="produit()!['img']" [alt]="produit()!['name']" width="179" height="259" class="mx-auto mt-3">
+        <div class="w-full h-[50px] font-bold bg-stone-500 text-center text-xl mt-6 content-center">
+            {{produit()!['name']}}
+        </div>
+        <div class="text-xs font-extralight mt-6 tracking-widest mx-5">
+            {{produit()!['description']}}
+        </div>
+        <div 
+          class="top-auto mx-auto w-[177px] h-[45px] mt-5 rounded-full text-center font-bold content-center"
+          [class.bg-pink-500]="produit()!['type'] == 'Femme'"
+          [class.bg-blue-600]="produit()!['type'] == 'Homme'"
+        >
+            Type : {{produit()!['type']}}
+        </div>
+        <div class="flex justify-between mt-3 pl-6 pr-8">
+            <div class="text-base tracking-wider font-semibold text-white items-center">
+                {{produit()!['prix']}}.000f
+            </div>
+            <img ngSrc="achat.svg" alt="achat" width="33" height="33" class="cursor-pointer hover:scale-[110%] duration-200" (click)="addToCart(produit()!['name'],produit()!)">
+        </div>
+
+    </div>
+    <div class=" bg-[#171229b3] w-full h-full fixed top-0 z-[60] " (click)="hideReveal()">
+        <div class="text-base pt-1  content-center font-semibold text-white cursor-pointer text-center ml-auto mr-24 mt-10 w-[30px] h-[30px] hover:scale-[110%] rounded-full bg-red-600 duration-300">X</div>
+    </div>
 </div>
 
 <app-footer></app-footer>
