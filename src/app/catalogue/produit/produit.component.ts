@@ -6,6 +6,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { FooterComponent } from '../../footer/footer.component';
 import { PanierComponent } from '../../panier/panier.component';
 import gsap from 'gsap';
+import { Marque } from '../../marque';
 
 @Component({
   selector: 'app-produit',
@@ -21,6 +22,7 @@ export class ProduitComponent implements OnInit{
   readonly id = Number(this.route.snapshot.paramMap.get('id'))
   readonly marques = toSignal(this.service.getMarque())
   readonly marque = computed (() => this.marques()?.find(item => item.id == this.id))
+  readonly marque2 = computed(()=> this.marque()?.produits)
   readonly searchInput = signal('')
   numb :number = 1
   produit  = computed(()=> this.marque()?.produits.find((item)=>item['numb'] == this.numb))
@@ -32,8 +34,8 @@ export class ProduitComponent implements OnInit{
   count = signal(0)
       
   readonly result = computed(()=>{
-    return this.marque()?.produits.filter((item)=>{
-      return item
+    return this.marque()?.produits.filter((i: {name : string})=>{
+      return i['name']?.toUpperCase().includes(this.searchInput().toUpperCase())
     })
   })
 

@@ -19,7 +19,7 @@
     <div id="search" class="absolute left-0 right-0 w-[500px] max-h-[250px] overflow-auto mx-auto bg-[#ffffff36] backdrop-blur-sm rounded-3xl mt-1 pt-2 z-30 hidden duration-700 animate-fadeIn ">
         @if (result() !== undefined) {
             @for (item of result(); track item) {
-                <div class="h-5 text-center mb-2 rounded-full hover:bg-[#342250] duration-200 cursor-pointer animate-fadeIn ">
+                <div class="h-5 text-center text-white mb-2 rounded-full hover:bg-[#342250] duration-200 cursor-pointer animate-fadeIn ">
                     {{item['name']}}
                 </div>
             }
@@ -38,11 +38,17 @@
     <div class="justify-center grid grid-cols-[340px_340px_340px] mt-20 pb-4 gap-14">
         @for (item of marque()?.produits; track item) {
             <div 
-              class="w-[340px] h-[437px] bg-stone-700 rounded-[30px] hover:scale-[105%] duration-700 cursor-pointer " 
-              (click)="viewReveal(item['numb'])"
+              class="w-[340px] h-[437px] bg-stone-700 rounded-[30px] hover:scale-[105%] duration-700" 
             >
                 <div class="h-[277px] bg-[#ffffff33] rounded-[30px]">
-                    <img ngSrc="view.svg" alt="view" width="33" height="33" class="ml-[280px]  pt-2 absolute cursor-pointer hover:scale-[110%] duration-200">
+                    <img 
+                      ngSrc="view.svg" 
+                      alt="view" 
+                      width="33" 
+                      height="33" 
+                      class="ml-[280px]  pt-2 absolute cursor-pointer hover:scale-[110%] duration-200"
+                      (click)="viewReveal(item['numb'])"
+                    >
                     <img [src]="item['img']" [alt]="item['name']" class="mx-auto pt-2">
                 </div>
                 <div class="text-xl font-bold text-white mt-8 pl-6">
