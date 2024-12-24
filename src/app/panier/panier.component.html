@@ -66,7 +66,10 @@
             <div> {{total()}}.000 fr </div>
         </div>
         <div class="w-full h-[1px] bg-[#342250]"></div>
-        <div class="w-[300px] h-8 bg-green-500 font-bold text-white text-center rounded-full pt-1 shadow-ombreCarte mt-8 cursor-pointer hover:scale-[110%] duration-700" >
+        <div 
+          class="w-[300px] h-8 bg-green-500 font-bold text-white text-center rounded-full pt-1 shadow-ombreCarte mt-8 cursor-pointer hover:scale-[110%] duration-700" 
+          (click)="goToValidation()"
+        >
             Je valide mon achat
         </div>
     </div>

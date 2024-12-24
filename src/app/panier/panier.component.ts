@@ -18,6 +18,8 @@ export class PanierComponent implements AfterViewInit {
   @Input () count = signal(0)
   @Input () total = signal(0)
   @Output() delete: EventEmitter<string> = new EventEmitter()
+  el:any
+  router : Router
   
   ngAfterViewInit(): void {
     console.log(this.el.nativeElement.querySelector('#contenu').childElementCount)
@@ -27,9 +29,9 @@ export class PanierComponent implements AfterViewInit {
     }
   }
 
-  el:any
-  constructor(el:ElementRef  ){
+  constructor(el:ElementRef , r :Router){
     this.el = el
+    this.router = r
   }
 
   deleteProduit(nom : string){
@@ -63,5 +65,13 @@ export class PanierComponent implements AfterViewInit {
   nombre(nom : string){
     return sessionStorage.getItem(nom)
   } 
+
+  goToValidation(){
+    if(this.total() == 0){
+      window.alert('Panier vide')
+    }else{
+      this.router.navigateByUrl('validation')
+    }
+  }
 
 }
